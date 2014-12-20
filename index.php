@@ -18,6 +18,7 @@ if (loggedin()) {
     $name = $result[0]['name'];
     $userid = $result[0]['id'];
     echo 'Welcome! ' . $name . ' ' .'<a  href="resources/logout.inc.php"><input type="button"  value="Logout"/></a>';
+    include_once 'resources/addpost.inc.php';
 } else {
     include 'resources/login.inc.php';
     include 'resources/createacc.inc.php';
