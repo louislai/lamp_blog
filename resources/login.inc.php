@@ -4,21 +4,25 @@ if (isset($_POST['user']) && isset($_POST['password'])) {
     $password = $_POST['password'];
 }
 if (!empty($user) && !empty($password)) {
-    $query = mysql_query("SELECT * FROM `blog_users` where user = '".$user."' and password = '".$password."'")
-    or die(mysql_error());
+    /*$query = mysql_query("SELECT * FROM `blog_users` where user = '".$user."' and password = '".$password."'")
+        or die(mysql_error());*/
+    try {
+        $stmt = $conn -> prepare("SELECT * FROM `blog_users` WHERE user = :user AND  password = :password");
+        $stmt -> bindValue(':user', $user, PDO::PARAM_STR);
+        $stmt -> bindValue(':password', $password, PDO::PARAM_STR);
+        $stmt -> execute();
+    } catch(PDOException $e) {
+        echo "Connection failed: " . $e->getMessage();
+    }
 }
-$data = mysql_fetch_array($query);
+$data = $stmt -> fetchAll();
 
-$test = $data['password'];
-echo '234'.$test.'<br>';
-$query_run=$query;
-$query_num_rows = mysql_num_rows($query_run);
+$query_num_rows = count($data);
 if ($query_num_rows == 0) {
     echo 'Invadid username/password combination.';
-} else if ($query_num_rows==1) {
+} else if ($query_num_rows == 1) {
     echo 'ok';
-    $user_id = mysql_result($query_run,0,'id');
-    $user_id = $data['id'];
+    $user_id = $data[0]['id'];
     $_SESSION['user_id'] = $user_id;
     header("Location:".$_SERVER['PHP_SELF']. " ");
 } else {

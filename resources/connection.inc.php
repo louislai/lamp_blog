@@ -6,19 +6,27 @@ $password = '123456';
 $dbname = 'louis_blog';
 
 // Open database conn
-/*try {
+try {
 
     $conn = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
     // set the PDO error mode to exception
     $conn ->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "Connected successfully";
+    echo "Connected successfully<br>";
 } catch(PDOException $e)  {
     echo "conn failed: " . $e->getMessage();
-}*/
-$dbc = mysql_connect($host, $user, $password) or  die("Cant connect :" . mysql_error());
+    die();
+}
+/*$dbc = mysql_connect($host, $user, $password) or  die("Cant connect :" . mysql_error());
 
 mysql_select_db($dbname, $dbc)
     or
     die("Cant connect :" . mysql_error());
-
+ */
+/*$stmt = $conn -> prepare('SELECT * FROM `blog_users`');
+$stmt -> execute();
+$rows = $stmt -> fetchAll();
+foreach ($rows as $row) {
+    echo $row['shortname'];
+}
+$conn = null;*/
 ?>
