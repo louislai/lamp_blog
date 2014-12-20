@@ -18,7 +18,7 @@ if (!empty($user) && !empty($password) && !empty($name)) {
 }
 
 ?>
-<div align="center">
+<div class="CreateAccount" align="center">
 <h6> Create a new account </h6>
 <form action="<?php echo $current_file; ?>" method="POST">
 <p> Username: <input type="text" name="user"> </p>

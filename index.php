@@ -1,6 +1,7 @@
 <?php
 require 'resources/core.inc.php';
 require 'resources/connection.inc.php';
+echo '<link rel="stylesheet" href="assets/css/index.css" type="text/css">';
 if (loggedin()) {
     $rightvar=$_SESSION['user_id'];
     try {

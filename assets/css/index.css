@@ -1,0 +1,16 @@
+.Login {
+    text-align: center;
+    color: grey;
+    width: 250px;
+    float: left;
+    margin-left: 0px;
+    border-style: double;
+}
+
+.CreateAccount {
+    text-align: center
+    margin-left: 300px;
+    color: blue;
+    border-style: double;
+    width: 250px;
+}
