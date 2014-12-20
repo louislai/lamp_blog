@@ -1,19 +1,19 @@
 <?php
 if (isset($_POST['user']) && isset($_POST['password'])) {
-    $user = $_POST['user'];
-    $password = $_POST['password'];
+    $user = htmlspecialchars($_POST['user']);
+    $password = htmlspecialchars($_POST['password']);
 }
 if (!empty($user) && !empty($password)) {
     try {
-        $stmt = $conn -> prepare("SELECT * FROM `blog_users` WHERE user = :user AND  password = :password");
-        $stmt -> bindValue(':user', $user, PDO::PARAM_STR);
-        $stmt -> bindValue(':password', $password, PDO::PARAM_STR);
-        $stmt -> execute();
+        $sql_query = $conn -> prepare("SELECT * FROM `blog_users` WHERE user = :user AND  password = :password");
+        $sql_query -> bindValue(':user', $user, PDO::PARAM_STR);
+        $sql_query -> bindValue(':password', $password, PDO::PARAM_STR);
+        $sql_query -> execute();
     } catch(PDOException $e) {
         echo "Connection failed: " . $e->getMessage();
     }
 
-    $data = $stmt -> fetchAll();
+    $data = $sql_query -> fetchAll();
 
     $query_num_rows = count($data);
     if ($query_num_rows == 0 && $user && $password) {
@@ -31,6 +31,7 @@ if (!empty($user) && !empty($password)) {
 }
 ?>
 <div align="center">
+<h6> Log in </h6>
 <form action="<?php echo $current_file; ?>" method="POST">
 Username: <input type="text" name="user"> Password: <input type="password" name="password">
 <input type="submit" value="Log in">
