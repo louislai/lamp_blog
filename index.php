@@ -1,8 +1,7 @@
-<?php require_once 'resources/templates/header.php'; ?>
-<?php require_once 'resources/templates/footer.php'; ?>
+<?php require_once 'includes/config.inc.php'; ?>
+<?php require INCLUDE_PATH.'core.inc.php'; ?>
+<?php require INCLUDE_PATH.'connection.inc.php'; ?>
 <?php
-require 'resources/core.inc.php';
-require 'resources/connection.inc.php';
 echo '<link rel="stylesheet" href="assets/css/index.css" type="text/css">';
 if (loggedin()) {
     $rightvar=$_SESSION['user_id'];
@@ -17,11 +16,11 @@ if (loggedin()) {
     $result = $sql_query -> fetchAll();
     $name = $result[0]['name'];
     $userid = $result[0]['id'];
-    echo 'Welcome! ' . $name . ' ' .'<a  href="resources/logout.inc.php"><input type="button"  value="Logout"/></a>';
-    include_once 'resources/addpost.inc.php';
+    echo 'Welcome! ' . $name . ' ' .'<a  href="logout.php"><input type="button"  value="Logout"/></a>';
+    include_once SITE_ROOT.'addpost.php';
 } else {
-    include 'resources/login.inc.php';
-    include 'resources/createacc.inc.php';
+    include SITE_ROOT.'login.php';
+    include SITE_ROOT.'createacc.php';
 }
-$conn = null;
+$conn = null
 ?>
