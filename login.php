@@ -1,26 +1,24 @@
 <?php
+// Set variables to POST data
 if (isset($_POST['user']) && isset($_POST['password'])) {
     $user = $_POST['user'];
     $password = $_POST['password'];
 }
+
+// Execute query
 if (!empty($user) && !empty($password)) {
-    try {
-        $sql_query = $conn -> prepare("SELECT * FROM `blog_users` WHERE user = :user AND  password = :password");
-        $sql_query -> bindValue(':user', $user, PDO::PARAM_STR);
-        $sql_query -> bindValue(':password', $password, PDO::PARAM_STR);
-        $sql_query -> execute();
-    } catch(PDOException $e) {
-        echo "Connection failed: " . $e->getMessage();
-    }
+    $params = array  (
+        array ($user, PDO::PARAM_STR),
+        array ($password, PDO::PARAM_STR)
+    );
+    $query_result = execute_query_and_fetch("SELECT *  FROM `blog_users` WHERE user = ? AND password = ?", $params);
 
-    $data = $sql_query -> fetchAll();
-
-    $query_num_rows = count($data);
-    if ($query_num_rows == 0 && $user && $password) {
+    // Check query result
+    if (is_null($query_result) && $user && $password) {
         echo 'Invalid username/password combination.';
-    } else if ($query_num_rows == 1) {
+    } else if (isset($query_result)) {
         echo 'ok';
-        $user_id = $data[0]['id'];
+        $user_id = $query_result['id'];
         $_SESSION['user_id'] = $user_id;
         $user = null;
         $password = null;
@@ -30,6 +28,7 @@ if (!empty($user) && !empty($password)) {
     }
 }
 ?>
+
 <div class="Login">
 <h4> Log in </h4>
 <form action="<?php echo $current_file; ?>" method="POST">

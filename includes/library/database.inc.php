@@ -27,29 +27,49 @@ function close_database() {
 function execute_query($query, $params) {
     // Get connection from global scope
     global $conn;
-
     // Open database connection
     open_database();
-
+    echo var_dump($params);
     // Execute database query
     try {
         $sql_query = $conn -> prepare($query);
         for ($i = 1; $i <= count($params); $i++) {
-            $sql_query -> bindValue($i, $params[$i][0], $params[$i][1]);
+            $sql_query -> bindValue($i, $params[$i-1][0], $params[$i-1][1]);
         }
         $sql_query -> execute();
     } catch(PDOException $e) {
         echo "Connection failed: " . $e->getMessage();
+        die();
     }
+    //
+    // Close database connection
+    close_database();
+    return null;
+}
 
+function execute_query_and_fetch($query, $params) {
+    // Get connection from global scope
+    global $conn;
+    // Open database connection
+    open_database();
+    echo var_dump($params);
+    // Execute database query
+    try {
+        $sql_query = $conn -> prepare($query);
+        for ($i = 1; $i <= count($params); $i++) {
+            $sql_query -> bindValue($i, $params[$i-1][0], $params[$i-1][1]);
+        }
+        $sql_query -> execute();
+    } catch(PDOException $e) {
+        echo "Connection failed: " . $e->getMessage();
+        die();
+    }
     $data = $sql_query -> fetchAll();
-
     $query_num_rows = count($data);
 
     // Manipulate returned data
     if ($query_num_rows == 0) {
         $result = null;
-
     } else if ($query_num_rows == 1) {
         $result = $data[0];
     } else {
@@ -58,5 +78,6 @@ function execute_query($query, $params) {
 
     // Close database connection
     close_database();
+    return $result;
 }
 ?>

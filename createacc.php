@@ -5,16 +5,13 @@ if (isset($_POST['user']) && isset($_POST['password']) && isset($_POST['name']))
     $name = $_POST['name'];
 }
 if (!empty($user) && !empty($password) && !empty($name)) {
-    try {
-        $sql_query = $conn -> prepare("INSERT INTO `blog_users` (user, password, name) VALUES (:user, :password, :name)");
-        $sql_query -> bindValue(':user', $user, PDO::PARAM_STR);
-        $sql_query -> bindValue(':password', $password, PDO::PARAM_STR);
-        $sql_query -> bindValue(':name', $name, PDO::PARAM_STR);
-        $sql_query -> execute();
-        header('Location: '.$http_referer);
-    } catch(PDOException $e) {
-        echo "Connection failed: " . $e->getMessage();
-    }
+    $params = array (
+        array($user, PDO::PARAM_STR),
+        array($password, PDO::PARAM_STR),
+        array($name, PDO::PARAM_STR)
+    );
+    $query_result = execute_query("INSERT INTO `blog_users` (user, password, name) VALUES (?, ?, ?)", $params);
+    header('Location: '.$http_referer);
 }
 
 ?>
