@@ -1,14 +1,9 @@
 <?php
-//:Initialize database credentials
-$host = 'localhost';
-$dbuser = 'root';
-$dbpassword = '123456';
-$dbname = 'louis_blog';
-
-// Open database conn
+require_once('config.inc.php');
+// Open database connection
 try {
 
-    $conn = new PDO("mysql:host=$host;dbname=$dbname", $dbuser, $dbpassword);
+    $conn = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD);
     // set the PDO error mode to exception
     $conn ->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch(PDOException $e)  {

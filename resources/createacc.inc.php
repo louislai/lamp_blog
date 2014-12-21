@@ -1,8 +1,8 @@
 <?php
 if (isset($_POST['user']) && isset($_POST['password']) && isset($_POST['name'])) {
-    $user = htmlspecialchars($_POST['user']);
-    $password = htmlspecialchars($_POST['password']);
-    $name = htmlspecialchars($_POST['name']);
+    $user = $_POST['user'];
+    $password = $_POST['password'];
+    $name = $_POST['name'];
 }
 if (!empty($user) && !empty($password) && !empty($name)) {
     try {
