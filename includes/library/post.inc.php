@@ -1,0 +1,86 @@
+<?php
+function get_posts() {
+    $sql = "SELECT * FROM `blog_posts`";
+
+    // Execute query and return all posts
+    return execute_query_and_fetch($sql, array());
+}
+
+function get_post_by_id($id) {
+    // Build database query
+    $sql = "SELECT `blog_posts`.title, content, create_date, update_date, `blog_posts`.id, `blog_users`.name AS author FROM `blog_posts` INNER JOIN `blog_users` ON `blog_posts`.author_id = `blog_users`.id WHERE `blog_posts`.id = ?";
+    $params = array(
+        array($id, PDO::PARAM_INT)
+    );
+
+    // Execute query and return the post
+    return execute_query_and_fetch($sql, $params);
+}
+
+function get_posts_by_author_id($id) {
+    // Build database query
+    $sql = "SELECT * FROM `blog_post` WHERE author_id = ?";
+    $params = array(
+        array($id, PDO::PARAM_INT)
+    );
+
+    // Execute query and return all posts by author
+    return execute_query_and_fetch($sql, $params);
+}
+
+function insert_post($title, $content, $author_id) {
+    // Build database query
+    $sql = "INSERT INTO `blog_posts` (title, content, author_id) VALUES (?, ?, ?)";
+    $params = array(
+        array($title, PDO::PARAM_STR),
+        array($content, PDO::PARAM_STR),
+        array($author_id, PDO::PARAM_INT)
+    );
+
+    // Execute query and return no of posts affected
+    return execute_query($sql, $params);
+}
+
+function update_post($title, $content, $id) {
+    // Build database query
+    $sql = "UPDATE `blog_posts` SET title = ? , content = ? WHERE id = ?";
+    $params = array(
+        array($title, PDO::PARAM_STR),
+        array($content, PDO::PARAM_STR),
+        array($id, PDO::PARAM_INT)
+    );
+
+    // Execute query and return no of posts affected
+    return execute_query($sql, $params);
+}
+
+function delete_post($id) {
+    // Build database query
+    $sql = "DELETE FROM `blog_posts` WHERE id = ?";
+    $params = array(
+        array($id, PDO::PARAM_INT)
+    );
+
+    // Delete post
+    return execute_query($sql, $params);
+}
+
+function display_post($post, $isFullPost) {
+?>
+    <body>
+    <div class="panel panel-primary">
+        <div class="panel-title"><?php echo $post['title']?></div>
+        <div class="panel-body">
+        <p>Posted on <?php echo $post['create_date']?></p>
+        <p>By <?php echo $post['author']?></p>
+<?php
+    if ($isFullPost) {
+        echo '<p>'.$post['content'].'</p>';
+    } else {
+        echo '<p>'.$post['content'].'</p>';
+        echo '<p><a href="viewpost.php?id='.$post['id'].
+            '">Read more</a></p>';
+    }
+    echo '</div></div></body></html>';
+}
+?>

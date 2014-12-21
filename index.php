@@ -2,7 +2,6 @@
 <?php require INCLUDE_PATH.'core.inc.php'; ?>
 <?php require INCLUDE_PATH.'connection.inc.php'; ?>
 <?php
-echo '<link rel="stylesheet" href="assets/css/index.css" type="text/css">';
 if (loggedin()) {
     $rightvar=$_SESSION['user_id'];
     try {

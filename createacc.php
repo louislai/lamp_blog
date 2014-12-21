@@ -1,19 +1,21 @@
 <?php
+// Initialize variables
+$user = null;
+$password = null;
+$name = null;
+
 if (isset($_POST['user']) && isset($_POST['password']) && isset($_POST['name'])) {
     $user = $_POST['user'];
     $password = $_POST['password'];
     $name = $_POST['name'];
-}
-if (!empty($user) && !empty($password) && !empty($name)) {
-    $params = array (
-        array($user, PDO::PARAM_STR),
-        array($password, PDO::PARAM_STR),
-        array($name, PDO::PARAM_STR)
-    );
-    $query_result = execute_query("INSERT INTO `blog_users` (user, password, name) VALUES (?, ?, ?)", $params);
-    header('Location: '.$http_referer);
-}
 
+    $sql_result = createacc($user, $password, $name);
+
+    // Reset variables
+    $user = null;
+    $password = null;
+    $name = null;
+}
 ?>
 <div class="CreateAccount" align="center">
 <h6> Create a new account </h6>

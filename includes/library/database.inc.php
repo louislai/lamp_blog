@@ -29,7 +29,7 @@ function execute_query($query, $params) {
     global $conn;
     // Open database connection
     open_database();
-    echo var_dump($params);
+
     // Execute database query
     try {
         $sql_query = $conn -> prepare($query);
@@ -41,10 +41,11 @@ function execute_query($query, $params) {
         echo "Connection failed: " . $e->getMessage();
         die();
     }
-    //
+    // Save the number of rows affected
+    $result = $sql_query -> rowCount();
     // Close database connection
     close_database();
-    return null;
+    return $result;
 }
 
 function execute_query_and_fetch($query, $params) {
@@ -52,7 +53,7 @@ function execute_query_and_fetch($query, $params) {
     global $conn;
     // Open database connection
     open_database();
-    echo var_dump($params);
+
     // Execute database query
     try {
         $sql_query = $conn -> prepare($query);

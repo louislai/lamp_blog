@@ -1,31 +1,19 @@
 <?php
+// Initialize variables
+$user = null;
+$password = null;
+
 // Set variables to POST data
 if (isset($_POST['user']) && isset($_POST['password'])) {
     $user = $_POST['user'];
     $password = $_POST['password'];
-}
 
-// Execute query
-if (!empty($user) && !empty($password)) {
-    $params = array  (
-        array ($user, PDO::PARAM_STR),
-        array ($password, PDO::PARAM_STR)
-    );
-    $query_result = execute_query_and_fetch("SELECT *  FROM `blog_users` WHERE user = ? AND password = ?", $params);
+    // Do login action
+    $sql_result = login($user, $password);
 
-    // Check query result
-    if (is_null($query_result) && $user && $password) {
-        echo 'Invalid username/password combination.';
-    } else if (isset($query_result)) {
-        echo 'ok';
-        $user_id = $query_result['id'];
-        $_SESSION['user_id'] = $user_id;
-        $user = null;
-        $password = null;
-        header("Location:".$_SERVER['PHP_SELF']. " ");
-    } else {
-        echo 'You must supply a username and password';
-    }
+    // Reset variables
+    $user = null;
+    $password = null;
 }
 ?>
 
