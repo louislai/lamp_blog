@@ -1,18 +1,29 @@
-/*
-.Login {
-text-align: center;
-color: grey;
-width: 200px;
-float: left;
+.page-header {
+    background-colour: blue;
 }
-
-.CreateAccount {
-text-align: center
-margin-left: 300px;
-color: blue;
-width: 250px;
-}
- */
 body {
     background-image: url("../img/symphony.png");
+}
+
+.post {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    width: 50%;
+    margin-left: 5%;
+    padding: 10%;
+    overflow: hidden;
+    border: none;
+    height: 10px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    font: normal normal bold 16px/1 "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    color: rgba(255,255,255,1);
+    text-align: left;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    background: rgba(147,196,125,0.7);
+    -webkit-box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.3) ;
+    box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.3) ;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.2) ;
 }

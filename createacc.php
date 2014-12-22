@@ -3,6 +3,7 @@
 $user = null;
 $password = null;
 $name = null;
+$success = false;
 
 if (isset($_POST['user']) && isset($_POST['password']) && isset($_POST['name'])) {
     $user = $_POST['user'];
@@ -10,13 +11,12 @@ if (isset($_POST['user']) && isset($_POST['password']) && isset($_POST['name']))
     $name = $_POST['name'];
 
     $sql_result = createAccount($user, $password, $name);
-
+    $success = true;
+    echo $name;
     // Reset variables
     $user = null;
     $password = null;
     $name = null;
-
-
 }
 
 // Require view

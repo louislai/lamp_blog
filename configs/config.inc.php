@@ -20,7 +20,6 @@ define('SITE_ROOT', dirname(dirname(__FILE__)).DS);
 // Define absolute paths
 define('MODEL_PATH', SITE_ROOT.'models'.DS);
 define('VIEW_PATH', SITE_ROOT.'views'.DS);
-define('CONTROLLER_PATH', SITE_ROOT.'controllers'.DS);
 define('ASSET_PATH', SITE_ROOT.'assets'.DS);
 
 // Include models

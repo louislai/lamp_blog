@@ -1,6 +1,6 @@
 <?php
 function getAllPosts() {
-    $sql = "SELECT * FROM `blog_posts`";
+    $sql = 'SELECT `blog_posts`.title, content, create_date, update_date, author_id, `blog_posts`.id, `blog_users`.name AS author FROM `blog_posts` INNER JOIN `blog_users` ON `blog_posts`.author_id = `blog_users`.id';
 
     // Execute query and return all posts
     return execute_query_and_fetch($sql, array());
@@ -8,7 +8,7 @@ function getAllPosts() {
 
 function getPostById($id) {
     // Build database query
-    $sql = "SELECT `blog_posts`.title, content, create_date, update_date, author_id, `blog_posts`.id, `blog_users`.name AS author FROM `blog_posts` INNER JOIN `blog_users` ON `blog_posts`.author_id = `blog_users`.id WHERE `blog_posts`.id = ?";
+    $sql = 'SELECT `blog_posts`.title, content, create_date, update_date, author_id, `blog_posts`.id, `blog_users`.name AS author FROM `blog_posts` INNER JOIN `blog_users` ON `blog_posts`.author_id = `blog_users`.id WHERE `blog_posts`.id = ?';
     $params = array(
         array($id, PDO::PARAM_INT)
     );
@@ -19,7 +19,7 @@ function getPostById($id) {
 
 function getPostsByAuthorId($id) {
     // Build database query
-    $sql = "SELECT * FROM `blog_post` WHERE author_id = ?";
+    $sql = 'SELECT * FROM `blog_post` WHERE author_id = ?';
     $params = array(
         array($id, PDO::PARAM_INT)
     );
@@ -30,7 +30,7 @@ function getPostsByAuthorId($id) {
 
 function insertPost($title, $content, $author_id) {
     // Build database query
-    $sql = "INSERT INTO `blog_posts` (title, content, author_id) VALUES (?, ?, ?)";
+    $sql = 'INSERT INTO `blog_posts` (title, content, author_id) VALUES (?, ?, ?)';
     $params = array(
         array($title, PDO::PARAM_STR),
         array($content, PDO::PARAM_STR),
@@ -43,7 +43,7 @@ function insertPost($title, $content, $author_id) {
 
 function updatePost($title, $content, $id) {
     // Build database query
-    $sql = "UPDATE `blog_posts` SET title = ? , content = ? WHERE id = ?";
+    $sql = 'UPDATE `blog_posts` SET title = ? , content = ? WHERE id = ?';
     $params = array(
         array($title, PDO::PARAM_STR),
         array($content, PDO::PARAM_STR),
@@ -56,7 +56,7 @@ function updatePost($title, $content, $id) {
 
 function deletePost($id) {
     // Build database query
-    $sql = "DELETE FROM `blog_posts` WHERE id = ?";
+    $sql = 'DELETE FROM `blog_posts` WHERE id = ?';
     $params = array(
         array($id, PDO::PARAM_INT)
     );
@@ -65,10 +65,10 @@ function deletePost($id) {
     return execute_query($sql, $params);
 }
 
-function displayPost($post, $isFullPost) {
+function displayPost($post, $isFullPost=false) {
 ?>
     <body>
-    <div class="panel panel-primary">
+    <div class="panel panel-primary post">
         <div class="panel-title"><?php echo $post['title']?></div>
         <div class="panel-body">
         <p>Posted on <?php echo $post['create_date']?>  Last editted on <?php echo $post['update_date']?></p>
