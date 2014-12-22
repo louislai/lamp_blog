@@ -10,15 +10,10 @@
     <title>Simple Blog by Louis Lai</title>
 
     <!-- Bootstrap -->
-    <script src="assets/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 
-    <!-- Bootbox js -->
-    <script src="assets/js/bootbox.min.js"></script>
-
-    <!-- JQuery -->
-    <script src="assets/js/juery.min.js"></script>
-
+    <!-- Pushy stylesheet-->
+    <link rel="stylesheet" href="assets/css/pushy.css">
     <!-- User defined stylesheet -->
     <link rel="stylesheet" href="assets/css/main.css" type="text/css">
 
@@ -27,5 +22,5 @@
     </head>
 <body>
 <div class="page-header">
-<h1> A Simple Blog by Louis Lai </h1>
+<h1 align="center"> A Simple Blog by Louis Lai </h1>
 </div>

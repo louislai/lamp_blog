@@ -2,44 +2,32 @@
 <?php require_once 'configs/core.inc.php'; ?>
 <?php include_once VIEW_PATH.'common/header.php'; ?>
 
-<div id="wrapper">
-    <!-- Sidebar -->
-    <div id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <li class="sidebar-brand">
-                <a href="#">
-                    Start Bootstrap
-                </a>
-            </li>
-            <li>
-                <a href="#">Dashboard</a>
-            </li>
-            <li>
-                <a href="#">Shortcuts</a>
-            </li>
-            <li>
-                <a href="#">Overview</a>
-            </li>
-            <li>
-                <a href="#">Events</a>
-            </li>
-            <li>
-                <a href="#">About</a>
-            </li>
-            <li>
-                <a href="#">Services</a>
-            </li>
-            <li>
-                <a href="#">Contact</a>
-            </li>
-                </ul>
-     </div>
-    <!-- /#sidebar-wrapper -->
+<!-- Pushy Menu -->
+<nav class="pushy pushy-left">
+    <ul>
+        <li><a href="#">Item 1</a></li>
+        <li><a href="#">Item 2</a></li>
+    </ul>
+</nav>
 
-    <!-- Page Content -->
-    <div id="page-content-wrapper">
-        <div class="container-fluid">
-<?php
+<!-- Site Overlay -->
+<div class="site-overlay"></div>
+
+<!-- Your Content -->
+<div id="container">
+    <nav class="navbar">
+    <!-- Menu Button -->
+    <div class="menu-btn"> Toggle Sidebar</div>
+    <form class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+    </nav>
+    <div class="container-fluid">
+    <?php
+include_once 'posts.php';
 
 if (loggedin()) {
     $id = $_SESSION['user_id'];
@@ -52,17 +40,14 @@ if (loggedin()) {
 </div>
 <?php
     include_once 'addpost.php';
+
 } else {
     include_once 'login.php';
     include_once 'createacc.php';
 }
 ?>
     </div>
-    <!-- /#page-content-wrapper -->
 </div>
-</div>
-<!-- /#wrapper -->
-
 <?php
 include_once VIEW_PATH.'common/footer.php';
 ?>
