@@ -8,7 +8,7 @@ function get_posts() {
 
 function get_post_by_id($id) {
     // Build database query
-    $sql = "SELECT `blog_posts`.title, content, create_date, update_date, `blog_posts`.id, `blog_users`.name AS author FROM `blog_posts` INNER JOIN `blog_users` ON `blog_posts`.author_id = `blog_users`.id WHERE `blog_posts`.id = ?";
+    $sql = "SELECT `blog_posts`.title, content, create_date, update_date, author_id, `blog_posts`.id, `blog_users`.name AS author FROM `blog_posts` INNER JOIN `blog_users` ON `blog_posts`.author_id = `blog_users`.id WHERE `blog_posts`.id = ?";
     $params = array(
         array($id, PDO::PARAM_INT)
     );
@@ -71,16 +71,27 @@ function display_post($post, $isFullPost) {
     <div class="panel panel-primary">
         <div class="panel-title"><?php echo $post['title']?></div>
         <div class="panel-body">
-        <p>Posted on <?php echo $post['create_date']?></p>
+        <p>Posted on <?php echo $post['create_date']?>  Last editted on <?php echo $post['update_date']?></p>
         <p>By <?php echo $post['author']?></p>
 <?php
     if ($isFullPost) {
-        echo '<p>'.$post['content'].'</p>';
+        echo '<p>'.$post['content'].'<br>';
     } else {
         echo '<p>'.$post['content'].'</p>';
         echo '<p><a href="viewpost.php?id='.$post['id'].
             '">Read more</a></p>';
     }
+
+    // Check if logged in user is author
+    //if ($post['author_id'] == $_SESSION['user_id']) {
+?>
+    <a href="updatepost.php?id=<?php echo $post['id']; ?>">Update</a>
+            <a href="deletepost.php?id=<?php echo $row['id']; ?>"
+                onClick = "javascript: return confirm
+                ('Are you sure you want to delete?');">Delete</a>
+<?php
+    //}
+    echo '</p>';
     echo '</div></div></body></html>';
 }
 ?>

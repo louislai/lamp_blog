@@ -31,6 +31,4 @@ require_once(FUNCTION_PATH.'functions.inc.php');
 require_once(FUNCTION_PATH.'database.inc.php');
 require_once(FUNCTION_PATH.'post.inc.php');
 require_once(FUNCTION_PATH.'user.inc.php');
-require_once(TEMPLATE_PATH.'header.php');
-require_once(TEMPLATE_PATH.'footer.php');
 ?>

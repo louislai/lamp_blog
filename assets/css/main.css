@@ -1,13 +1,18 @@
+/*
 .Login {
-    text-align: center;
-    color: grey;
-    width: 200px;
-    float: left;
+text-align: center;
+color: grey;
+width: 200px;
+float: left;
 }
 
 .CreateAccount {
-    text-align: center
-    margin-left: 300px;
-    color: blue;
-    width: 250px;
+text-align: center
+margin-left: 300px;
+color: blue;
+width: 250px;
+}
+ */
+body {
+    background-image: url("../img/symphony.png");
 }

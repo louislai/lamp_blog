@@ -6,7 +6,7 @@ function redirect_to($url) {
 }
 
 function sanitize_output($string) {
-    return htmlspecialchars($string, ENT_QUOTE, 'utf-8');
+    return htmlspecialchars($string, ENT_QUOTES, 'utf-8');
 }
 
 function loggedin() {
