@@ -1,4 +1,6 @@
 <?php
+require_once 'configs/config.inc.php';
+
 // Define default content
 DEFINE('DEFAULT_CONTENT', 'Type here');
 
@@ -18,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $author = (int) $_SESSION['user_id'];
 
         // Execute query and return result
-        $sql_result = insert_post($title, $content, $author);
+        $sql_result = insertPost($title, $content, $author);
 
         //Reset the variables
         $title = null;
@@ -33,20 +35,6 @@ NULL;
     }
 }
 
+// Require view
+require_once VIEW_PATH.'addpost.view.php'
 ?>
-<div class="container AddPost">
-    <h3> Add a new Post </h3>
-    <form action="<?php echo $current_file; ?>" method="POST">
-    <p>
-        <label for "title">Title: </label>
-        <input type="text" name="title">
-    </p>
-
-    <p>
-        <label for "content">Content </label><br>
-        <textarea id = "content" cols="40" rows="10" name="content"> <?php echo DEFAULT_CONTENT; ?>  </textarea>
-    </p>
-
-    <p><input type="submit" value="Add post"></p>
-</form>
-</div>

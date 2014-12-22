@@ -1,12 +1,12 @@
 <?php
-function get_posts() {
+function getAllPosts() {
     $sql = "SELECT * FROM `blog_posts`";
 
     // Execute query and return all posts
     return execute_query_and_fetch($sql, array());
 }
 
-function get_post_by_id($id) {
+function getPostById($id) {
     // Build database query
     $sql = "SELECT `blog_posts`.title, content, create_date, update_date, author_id, `blog_posts`.id, `blog_users`.name AS author FROM `blog_posts` INNER JOIN `blog_users` ON `blog_posts`.author_id = `blog_users`.id WHERE `blog_posts`.id = ?";
     $params = array(
@@ -17,7 +17,7 @@ function get_post_by_id($id) {
     return execute_query_and_fetch($sql, $params);
 }
 
-function get_posts_by_author_id($id) {
+function getPostsByAuthorId($id) {
     // Build database query
     $sql = "SELECT * FROM `blog_post` WHERE author_id = ?";
     $params = array(
@@ -28,7 +28,7 @@ function get_posts_by_author_id($id) {
     return execute_query_and_fetch($sql, $params);
 }
 
-function insert_post($title, $content, $author_id) {
+function insertPost($title, $content, $author_id) {
     // Build database query
     $sql = "INSERT INTO `blog_posts` (title, content, author_id) VALUES (?, ?, ?)";
     $params = array(
@@ -41,7 +41,7 @@ function insert_post($title, $content, $author_id) {
     return execute_query($sql, $params);
 }
 
-function update_post($title, $content, $id) {
+function updatePost($title, $content, $id) {
     // Build database query
     $sql = "UPDATE `blog_posts` SET title = ? , content = ? WHERE id = ?";
     $params = array(
@@ -54,7 +54,7 @@ function update_post($title, $content, $id) {
     return execute_query($sql, $params);
 }
 
-function delete_post($id) {
+function deletePost($id) {
     // Build database query
     $sql = "DELETE FROM `blog_posts` WHERE id = ?";
     $params = array(
@@ -65,7 +65,7 @@ function delete_post($id) {
     return execute_query($sql, $params);
 }
 
-function display_post($post, $isFullPost) {
+function displayPost($post, $isFullPost) {
 ?>
     <body>
     <div class="panel panel-primary">
