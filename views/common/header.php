@@ -14,13 +14,16 @@
 
     <!-- Pushy stylesheet-->
     <link rel="stylesheet" href="assets/css/pushy.css">
-    <!-- User defined stylesheet -->
-    <link rel="stylesheet" href="assets/css/main.css" type="text/css">
+
 
     <!-- StartBootstrap styleshhet -->
     <link rel="stylesheet" href="assets/css/simple-sidebar.css">
+
+    <!-- User defined stylesheet -->
+    <link rel="stylesheet" href="assets/css/main.css" type="text/css">
     </head>
 <body>
 <div class="page-header">
 <h1> A Simple Blog by Louis Lai </h1>
 </div>
+

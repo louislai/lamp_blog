@@ -14,14 +14,15 @@ include_once VIEW_PATH.'common/navbar.php';
         $sql_result = getUserByID($id);
         $name = $sql_result['name'];
         $userid = $sql_result['id'];
+        require_once VIEW_PATH.'common/status.php';
         ?>
-        <div class="alert alert-success" role="alert">
-            <p> Welcome! <?php echo $name; ?> <a href="logout.php"><input type="button" value="Logout"/></a></p>
-        </div>
+
         <?php
         include_once 'addpost.php';
 
         } else {
+        require_once VIEW_PATH.'common/status.php';
+
         include_once 'login.php';
         include_once 'createacc.php';
         }
