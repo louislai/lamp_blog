@@ -22,5 +22,5 @@
     </head>
 <body>
 <div class="page-header">
-<h1 align="center"> A Simple Blog by Louis Lai </h1>
+<h1> A Simple Blog by Louis Lai </h1>
 </div>

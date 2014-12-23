@@ -10,7 +10,7 @@ if (isset($_GET['id']) && intval($_GET['id']) > 0) {
 
     // Fetch post
     $post = getPostById($id);
-    displayPost($post, true);
+    displayAllPosts($post);
 }
 
 require_once VIEW_PATH.'common/footer.php';
