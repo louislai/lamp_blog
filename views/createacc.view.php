@@ -1,9 +1,23 @@
-<div class="row CreateAccount">
-<h4> Create a new account </h4>
-<form action="<?php echo $current_file; ?>" method="POST">
-<p> Username: <input type="text" name="user"> </p>
-<p> Password: &nbsp<input type="password" name="password"> </p>
-<p> Name: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" name="name"> </p>
-<p><input type="submit" value="Create Account"></p>
-</form>
+<div class="col-md-6">
+	<div class="well wlform-box">
+		<form action="<?php echo $current_file; ?>" method="POST">
+			<legend>Create a new account</legend>
+			<div class="form-group">
+				<label for="name">Username</label>
+				<input value='' name="user" id="username-email" placeholder="Username" type="text" class="form-control" />
+			</div>
+			<div class="form-group">
+				<label for="password">Password</label>
+				<input id="password" name="password" value='' placeholder="Password" type="text" class="form-control" />
+			</div>
+			<div class="form-group">
+				<label for="password">Name</label>
+				<input name="name" value='' placeholder="Your name" type="text" class="form-control" />
+			</div>
+			<div class="form-group text-center">
+				<button class="btn btn-danger btn-cancel-action">Cancel</button>
+				<input type="submit" class="btn btn-success btn-login-submit" value="Create a new account" />
+			</div>
+		</form>
+	</div>
 </div>

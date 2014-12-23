@@ -1,8 +1,10 @@
 <?php
 require_once 'configs/config.inc.php';
+require_once 'configs/core.inc.php';
+ 
+include_once VIEW_PATH.'common/header.php';
+include_once VIEW_PATH.'common/navbar.php';
 
-// Define default content
-DEFINE('DEFAULT_CONTENT', 'Type here');
 
 // Initialize the variables
 $title = null;
@@ -13,7 +15,7 @@ $author = null;
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Check if all fields keyed in
-    if (isset($_POST['title']) && isset($_POST['content']) &&$_POST['content'] != DEFAULT_CONTENT && $_POST['title'] != '' && $_POST['content'] != '') {
+    if (isset($_POST['title']) && isset($_POST['content']) && $_POST['title'] != '' && $_POST['content'] != '') {
         // Set variables to POST data
         $title = $_POST['title'];
         $content = $_POST['content'];
@@ -36,5 +38,8 @@ NULL;
 }
 
 // Require view
-require_once VIEW_PATH.'addpost.view.php'
+require_once VIEW_PATH.'addpost.view.php';
+
+// footer
+include_once VIEW_PATH.'common/footer.php';
 ?>

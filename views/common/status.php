@@ -3,7 +3,7 @@
 if (loggedin()) {
 ?>
 <div class="alert alert-success" role="alert">
-            <p> Welcome! <?php echo $name; ?> </p>
+            <p> Welcome! <?php echo $_SESSION['user_name']; ?> </p>
         </div>
 <?php
 } else {

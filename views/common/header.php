@@ -11,14 +11,7 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-
-    <!-- Pushy stylesheet-->
-    <link rel="stylesheet" href="assets/css/pushy.css">
-
-
-    <!-- StartBootstrap styleshhet -->
-    <link rel="stylesheet" href="assets/css/simple-sidebar.css">
-
+    
     <!-- User defined stylesheet -->
     <link rel="stylesheet" href="assets/css/main.css" type="text/css">
     </head>
