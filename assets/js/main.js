@@ -1,3 +1,3 @@
-$(document).ready(function() {
-	$('article').readmore();
+$('article').readmore({
+	maxHeight: 100
 });
