@@ -72,8 +72,8 @@ function displayPost($post, $isFullPost=false) {
         <p><small class="text-muted">
             <?php echo $post['update_date']?> by <?php echo $post['author']?></small>
         </p>
-        <p>
-            <?php echo $post['content'] ?> </p>
+        
+            <article><?php echo $post['content'] ?> </article>
 
 <?php
 
@@ -128,4 +128,5 @@ function displayAllPosts($posts) {
 <?php
     }
 }
+
 ?>
