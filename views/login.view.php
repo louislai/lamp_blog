@@ -12,6 +12,7 @@
 				<input name="password" value='' placeholder="Password" type="password" class="form-control" />
 			</div>
 			<div class="form-group text-center">
+				<input type="submit" name="btnCancel" class="btn btn-danger btn-cancel-action" value="Cancel"/>
 				<input type="submit" class="btn btn-success btn-login-submit" value="Login" />
 			</div>
 		</form>

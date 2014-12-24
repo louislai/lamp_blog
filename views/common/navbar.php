@@ -1,7 +1,6 @@
 <nav>
     <ul>
     	<li><a href="index.php">Home</a></li>
-        <li><a href="posts.php">All Posts</a></li>
         
 <?php
         // Check logged in

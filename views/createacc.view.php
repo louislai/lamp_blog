@@ -15,6 +15,7 @@
 				<input name="name" value='' placeholder="Your name" type="text" class="form-control" />
 			</div>
 			<div class="form-group text-center">
+				<input type="submit" name="btnCancel" class="btn btn-danger btn-cancel-action" value="Cancel"/>
 				<input type="submit" class="btn btn-success btn-login-submit" value="Create a new account" />
 			</div>
 		</form>

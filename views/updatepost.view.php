@@ -12,8 +12,10 @@
                 <textarea rows="10" id="content" name="content" class="form-control"><?php echo sanitize_output($content);?></textarea></p>
             </div>
             <div class="form-group text-center">
-                <button class="btn btn-danger btn-cancel-action">Cancel</button>
-                <input type="submit" class="btn btn-success btn-login-submit" value="Update" />
+                
+                <input type="submit" name="btnCancel" class="btn btn-danger btn-cancel-action" value="Cancel"/>
+            
+                <input type="submit" name="btnUpdate" class="btn btn-success btn-login-submit" value="Update" />
             </div>
         </form>
     </div>

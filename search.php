@@ -10,7 +10,11 @@ include_once VIEW_PATH.'common/navbar.php';
 <?php
 require_once 'views/search.view.php';
 
-
+// Check if Cancel button pressed
+if (isset($_POST['btnCancel'])) {
+    header('location: index.php');
+    exit();
+}
 
 // Initialize variables
 $keyword = null;

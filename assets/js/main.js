@@ -1,3 +1,8 @@
-$('article').readmore({
-	maxHeight: 100
+$(document).ready(function() {
+	$('article').readmore({
+		maxHeight: 100
+	});
+
+
+	// Validation rules
 });
