@@ -4,7 +4,7 @@
             <legend>Search for Posts</legend>
             <div class="form-group">
                 <label for="search">Search Box</label>
-                <input value='' name="keyword" placeholder="Type in your keywords" type="text" class="form-control" />
+                <input value='' name="keyword" placeholder="Type in your keywords" type="text" class="form-control" required/>
             </div>
             <div class="form-group text-center">
                 <input type="submit" name="btnCancel" class="btn btn-danger btn-cancel-action" value="Cancel"/>

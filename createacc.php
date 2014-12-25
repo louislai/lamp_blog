@@ -27,7 +27,16 @@ if (isset($_POST['user']) && isset($_POST['password']) && isset($_POST['name']))
     $password = $_POST['password'];
     $name = $_POST['name'];
 
-    $sql_result = createAccount($user, $password, $name);
+    try { 
+        $sql_result = createAccount($user, $password, $name);
+    } catch (Exception $e) {
+        ?>
+        <div class="alert alert-error" role="alert">
+            <p> Please fix your fields to proceed</p>
+        </div>
+        <?php
+        exit();
+    }
     $success = true;
     echo $name;
     // Reset variables
