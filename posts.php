@@ -1,3 +1,6 @@
+<div>
+	<h3> All Blog Posts </h3>
+</div>
 <?php
 require_once 'configs/config.inc.php';
 require_once 'configs/core.inc.php';

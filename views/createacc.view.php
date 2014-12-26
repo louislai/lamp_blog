@@ -1,7 +1,7 @@
 <!-- Load validation js file -->
 <script src="assets/js/validation.js" type="text/javascript"></script>
 
-<div class="col-md-6">
+<div class="col-md-6 col-md-offset-2">
 	<div class="well wlform-box">
 		<form id="register" action="<?php echo $current_file; ?>" method="POST">
 			<legend>Create a new account</legend>

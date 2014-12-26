@@ -1,4 +1,4 @@
-<div class="col-md-6" id="add-box">
+<div class="col-md-8 col-md-offset-2" id="add-box">
     <div class="well wlform-box">
         <form action="<?php echo $current_file;?>" method="POST">
             <legend>Add a new post</legend>

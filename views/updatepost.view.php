@@ -1,4 +1,4 @@
-<div class="col-md-6" id="update-box">
+<div class="col-md-8 col-md-offset-2" id="update-box">
     <div class="well wlform-box">
         <form action="<?php
     echo sanitize_output($_SERVER['REQUEST_URI']);?>" method="POST">

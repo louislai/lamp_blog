@@ -103,7 +103,7 @@ function searchPost($keyword) {
     $params = array(
         array($keyword, PDO::PARAM_STR)
     );
-    $sql = 'SELECT `blog_posts`.title, content, create_date, update_date, author_id, `blog_posts`.id, `blog_users`.name AS author FROM `blog_posts` INNER JOIN `blog_users` ON `blog_posts`.author_id = `blog_users`.id WHERE MATCH (title, content) AGAINST (? IN BOOLEAN MODE)';
+    $sql = 'SELECT `blog_posts`.title, content, create_date, update_date, author_id, `blog_posts`.id, `blog_users`.name AS author FROM `blog_posts` INNER JOIN `blog_users` ON `blog_posts`.author_id = `blog_users`.id WHERE MATCH (title, content) AGAINST (? IN BOOLEAN MODE) ORDER BY update_date DESC';
 
     // Execute query and return result
     return execute_query_and_fetch($sql, $params);
