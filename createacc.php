@@ -20,25 +20,17 @@ if (isset($_POST['btnCancel'])) {
 $user = null;
 $password = null;
 $name = null;
-$success = false;
+
 
 if (isset($_POST['user']) && isset($_POST['password']) && isset($_POST['name'])) {
     $user = $_POST['user'];
     $password = $_POST['password'];
     $name = $_POST['name'];
 
-    try { 
-        $sql_result = createAccount($user, $password, $name);
-    } catch (Exception $e) {
-        ?>
-        <div class="alert alert-error" role="alert">
-            <p> Please fix your fields to proceed</p>
-        </div>
-        <?php
-        exit();
-    }
-    $success = true;
-    echo $name;
+    
+    $sql_result = createAccount($user, $password, $name);
+
+
     // Reset variables
     $user = null;
     $password = null;

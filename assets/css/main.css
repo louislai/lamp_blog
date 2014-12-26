@@ -29,7 +29,7 @@ body {
 
     width: 100%;
 
-    max-width: 960px;
+    max-width: 80%;
 
 margin: 0 auto; }
 
@@ -69,7 +69,7 @@ padding: 0; }
 
 nav ul li {
 
-    width: 15%; /* from above */
+    width: 18%; /* from above */
 
     display: inline-block;
 }

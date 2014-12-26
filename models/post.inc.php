@@ -65,7 +65,7 @@ function deletePost($id) {
     return execute_query($sql, $params);
 }
 
-function displayPost($post, $isFullPost=false) {
+function displayPost($post) {
 ?>
     <div class="post-box">
         <h5> <?php echo $post['title']?></h5>

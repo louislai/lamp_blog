@@ -26,17 +26,22 @@ if (isset($_POST['user']) && isset($_POST['password'])) {
     // Do login action
     $sql_result = login($user, $password);
 
-    // Get back current user data
-    $id = $_SESSION['user_id'];
-    $sql_result = getUserByID($id);
-    $_SESSION['user_name'] = $sql_result['name'];
+    
 
     // Reset variables
     $user = null;
     $password = null;
 
-    // Redirect back to index page
-    header('Location: '.'index.php');
+    // If login successful
+    if ($sql_result === 1) { 
+        // Get back current user data
+        $id = $_SESSION['user_id'];
+        $sql_result = getUserByID($id);
+        $_SESSION['user_name'] = $sql_result['name'];
+
+        // Redirect to home page
+        header('Location: '.'index.php');
+    }
 }
 
 // Require views

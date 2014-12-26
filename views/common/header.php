@@ -14,6 +14,18 @@
     
     <!-- User defined stylesheet -->
     <link rel="stylesheet" href="assets/css/main.css" type="text/css">
+    
+    <!-- JQuery -->
+    <script src="assets/js/jquery.js"></script>
+
+    <!-- Bootstrap js-->
+    <script src="assets/js/bootstrap.min.js"></script>
+
+    <!-- Readmore.js -->
+    <script type="text/javascript" src="assets/js/readmore.js"></script>
+
+    <!-- User defined js -->
+    <script src="assets/js/main.js"></script>
     </head>
 <body>
 <div class="page-header">

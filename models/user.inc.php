@@ -9,14 +9,21 @@ function login($user, $password) {
 
     // Check query result
     if (is_null($sql) && $user && $password) {
-        echo 'Invalid username/password combination.';
+        ?>
+        <script type="text/javascript">
+
+        alert('Invalid username/password combination.');
+        </script>
+    <?php
+        return 0;
     } else if (isset($sql)) {
         echo 'ok';
         $user_id = $sql['id'];
         $_SESSION['user_id'] = $user_id;
-        header('Location:'.$_SERVER['PHP_SELF']. ' ');
+        return 1;
     } else {
-        echo 'You must supply a username and password';
+        echo 'Unknown error';
+        return 0;
     }
 }
 
