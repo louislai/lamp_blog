@@ -117,6 +117,7 @@ function displayAllPosts($posts) {
         ?>
         <div class="holder"></div>
         <ul id="pagination">
+            <?php
             displayPost($posts);
             ?>
         </ul>
