@@ -114,7 +114,13 @@ function searchPost($keyword) {
 function displayAllPosts($posts) {
     if (isset($posts)) {
         if (isset($posts['title'])) {
+        ?>
+        <div class="holder"></div>
+        <ul id="pagination">
             displayPost($posts);
+            ?>
+        </ul>
+    <?php
         } else {
             ?>
     <!-- Page navigation panel -->

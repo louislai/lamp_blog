@@ -17,7 +17,7 @@ $(document).ready(function() {
 // Check if username and password ok
 function validation_ok() {
 
-    return check_username() && check_password();
+    return check_username_sync() && check_password();
 }
 
 // Return true if username has no duplicate in database
@@ -29,7 +29,6 @@ function check_username() {
     data: {
         username: $('#username').val(),
     },
-    async: false,
     cache: false,
     success: function(response) {
         if (response == 0) {
@@ -49,6 +48,33 @@ function check_username() {
     return result;
 }
 
+function check_username_sync() {
+    var result2;
+    $.ajax({
+        type: 'POST',
+    url: 'models/validations/validate_account.php',
+    data: {
+        username: $('#username').val(),
+    },
+    async: false,
+    cache: false,
+    success: function(response) {
+        if (response == 0) {
+            var message = document.getElementById('checkUsername');
+            message.style.color = "#66cc66";
+            message.innerHTML = "Username is available";
+            result2 = true;
+        } else {
+            var message = document.getElementById('checkUsername');
+            message.style.color = "#ff6666";;
+            message.innerHTML = "Username has duplicate in the database";
+            result2 = false;
+        }
+    }
+
+    });
+    return result2;
+}
 // Return true if password and re-password are the same
 function check_password() {
     if ($('#password').val() == $('#repassword').val()) {

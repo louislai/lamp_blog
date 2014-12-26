@@ -28,7 +28,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $title = null;
         $content = null;
         $author = null;
-        echo '<p>Post added successfully</p>';
+        ?>
+        <script type="text/javascript">
+            alert('<p>Post added successfully</p>');
+        </script>
+        <?php
 
     } else if (isset($_POST['title']) || isset($content) ) {
         echo "<p>Please fill in all the required fields</p>";
