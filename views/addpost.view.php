@@ -11,6 +11,7 @@
                 <textarea placeholder="Type here" rows="10" id="content" name="content" class="form-control" required></textarea></p>
             </div>
             <div class="form-group text-center">
+                <input type="submit" name="btnCancel" class="btn btn-danger btn-cancel-action" value="Cancel" formnovalidate/>
                 <input type="submit" class="btn btn-success btn-login-submit" value="Add post" />
             </div>
         </form>
