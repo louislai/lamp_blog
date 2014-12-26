@@ -4,7 +4,7 @@ function login($user, $password) {
     $params = array  (
         array ($user, PDO::PARAM_STR),
         array ($password, PDO::PARAM_STR)
-    );
+        );
     $sql = execute_query_and_fetch('SELECT *  FROM `blog_users` WHERE user = ? AND password = ?', $params);
 
     // Check query result
@@ -14,7 +14,7 @@ function login($user, $password) {
 
         alert('Invalid username/password combination.');
         </script>
-    <?php
+        <?php
         return 0;
     } else if (isset($sql)) {
         echo 'ok';
@@ -31,7 +31,7 @@ function getUserByID($id) {
     // Prepare database query
     $params = array(
         array($id, PDO::PARAM_INT)
-    );
+        );
     $sql = execute_query_and_fetch('SELECT * FROM `blog_users` WHERE id = ?', $params);
 
     // Return user
@@ -44,10 +44,12 @@ function createAccount($user, $password, $name) {
             array($user, PDO::PARAM_STR),
             array($password, PDO::PARAM_STR),
             array($name, PDO::PARAM_STR)
-        );
+            );
         $sql = execute_query('INSERT INTO `blog_users` (user, password, name) VALUES (?, ?, ?)', $params);
-
-        // Redirect path to index page
-        header('Location: '.$http_referer);
+        ?>
+        <script type="text/javascript">
+        alert("Your account has been successfully created");
+        </script>
+        <?php
     }
 }

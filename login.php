@@ -23,6 +23,9 @@ if (isset($_POST['user']) && isset($_POST['password'])) {
     $user = $_POST['user'];
     $password = $_POST['password'];
 
+    // Hash password
+    $password = md5($password);
+
     // Do login action
     $sql_result = login($user, $password);
 

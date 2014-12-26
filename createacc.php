@@ -27,6 +27,9 @@ if (isset($_POST['user']) && isset($_POST['password']) && isset($_POST['name']))
     $password = $_POST['password'];
     $name = $_POST['name'];
 
+    // Hash password
+    $password = md5($password);
+
     
     $sql_result = createAccount($user, $password, $name);
 
