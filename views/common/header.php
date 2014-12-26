@@ -12,11 +12,17 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     
+    <!-- JPages stylesheet -->
+    <link rel="stylesheet" href="assets/css/jPage.css">
+
     <!-- User defined stylesheet -->
     <link rel="stylesheet" href="assets/css/main.css" type="text/css">
     
     <!-- JQuery -->
     <script src="assets/js/jquery.js"></script>
+
+    <!--JPages -->
+    <script type="text/javascript" src="assets/js/jPages.js"></script>
 
     <!-- Bootstrap js-->
     <script src="assets/js/bootstrap.min.js"></script>

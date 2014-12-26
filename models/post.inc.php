@@ -67,6 +67,7 @@ function deletePost($id) {
 
 function displayPost($post) {
 ?>
+<li>
     <div class="post-box">
         <h5> <?php echo $post['title']?></h5>
         <p><small class="text-muted">
@@ -92,6 +93,7 @@ function displayPost($post) {
     }
 ?>
     </div>
+</li>
 <?php
 }
 
@@ -114,10 +116,18 @@ function displayAllPosts($posts) {
         if (isset($posts['title'])) {
             displayPost($posts);
         } else {
+            ?>
+    <!-- Page navigation panel -->
+    <div class="holder"></div>
+        <ul id="pagination">
+            <?php
             foreach ($posts as $post) {
 
                 displayPost($post, true);
             }
+        ?>
+        </ul>
+    <?php
         }
     } else {
 ?>

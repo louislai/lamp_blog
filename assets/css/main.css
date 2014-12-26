@@ -154,3 +154,7 @@ nav ul li a {
 
 }
 
+/* No bullets for post li */
+#pagination {
+    list-style-type: none;
+}
