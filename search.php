@@ -1,14 +1,12 @@
 <?php
-require_once 'configs/config.inc.php';
-require_once 'configs/core.inc.php';
-?>
-
-<?php 
-include_once VIEW_PATH.'common/header.php';
-include_once VIEW_PATH.'common/navbar.php';
+require_once 'configs'.DIRECTORY_SEPARATOR.'config.inc.php';
+require_once 'configs'.DS.'core.inc.php';
+ 
+require_once VIEW_PATH.'common'.DS.'header.php';
+require_once VIEW_PATH.'common'.DS.'navbar.php';
 ?>
 <?php
-require_once 'views/search.view.php';
+require_once VIEW_PATH.'search.view.php';
 
 // Check if Cancel button pressed
 if (isset($_POST['btnCancel'])) {
@@ -35,5 +33,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 // footer
-include_once VIEW_PATH.'common/footer.php';
+require_once VIEW_PATH.'common'.DS.'footer.php';
 ?>

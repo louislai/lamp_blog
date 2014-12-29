@@ -1,9 +1,11 @@
-<?php require_once 'configs/config.inc.php'; ?>
-<?php require_once 'configs/core.inc.php'; ?>
-<?php include_once VIEW_PATH.'common/header.php';
-include_once VIEW_PATH.'common/navbar.php';
+<?php 
+require_once 'configs'.DIRECTORY_SEPARATOR.'config.inc.php';
+require_once 'configs'.DS.'core.inc.php';
+ 
+require_once VIEW_PATH.'common'.DS.'header.php';
+require_once VIEW_PATH.'common'.DS.'navbar.php';
 
-include_once 'posts.php';
+require_once 'posts.php';
 
-include_once VIEW_PATH.'common/footer.php';
+require_once VIEW_PATH.'common'.DS.'footer.php';
 ?>
