@@ -7,7 +7,7 @@ require_once VIEW_PATH.'common'.DS.'navbar.php';
 
 // Check if Cancel button pressed
 if (isset($_POST['btnCancel'])) {
-    header('location: index.php');
+    redirect_to('index.php');
     exit();
 }
 
@@ -24,7 +24,7 @@ if (isset($_GET['id']) && intval($_GET['id']) > 0) {
     $id = $_GET['id'];
 
     // Fetch row from database
-    $row = getPostById($id);
+    $row = post_get_by_id($id);
 
     // Set form values
     $title = $row['title'];
@@ -41,20 +41,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $content = $_POST['content'];
 
     // Update post
-        $sql_result = updatePost($title, $content, $id);
+        $sql_result = post_update($title, $content, $id);
 
     // Reset variables
         $title = null;
         $content = null;
 
     // Redirect to index page
-        header('location: index.php');
+        redirect_to('index.php');
         exit();
     }
 }
 
 // Require view
-require_once VIEW_PATH.'updatepost.view.php';
+require_once VIEW_PATH.'post_update.view.php';
 
 // footer
 require_once VIEW_PATH.'common'.DS.'footer.php';

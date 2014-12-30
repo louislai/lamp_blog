@@ -9,7 +9,7 @@ require_once VIEW_PATH.'common'.DS.'navbar.php';
 <?php
 // Check if Cancel button pressed
 if (isset($_POST['btnCancel'])) {
-    header('location: index.php');
+    redirect_to('index.php');
     exit();
 }
 
@@ -26,7 +26,7 @@ if (isset($_POST['user']) && isset($_POST['password'])) {
     $password = md5($password);
 
     // Do login action
-    $sql_result = login($user, $password);
+    $sql_result = user_login($user, $password);
 
     
 
@@ -38,7 +38,7 @@ if (isset($_POST['user']) && isset($_POST['password'])) {
     if ($sql_result === 1) { 
         // Get back current user data
         $id = $_SESSION['user_id'];
-        $sql_result = getUserByID($id);
+        $sql_result = user_get_by_id($id);
         $_SESSION['user_name'] = $sql_result['name'];
 
         // Redirect to home page

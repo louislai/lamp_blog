@@ -1,11 +1,11 @@
 <?php
-function login($user, $password) {
+function user_login($user, $password) {
     // Prepare database query
     $params = array  (
         array ($user, PDO::PARAM_STR),
         array ($password, PDO::PARAM_STR)
         );
-    $sql = execute_query_and_fetch('SELECT *  FROM `blog_users` WHERE user = ? AND password = ?', $params);
+    $sql = database_execute_query_and_fetch('SELECT *  FROM `blog_users` WHERE user = ? AND password = ?', $params);
 
     // Check query result
     if (is_null($sql) && $user && $password) {
@@ -27,25 +27,25 @@ function login($user, $password) {
     }
 }
 
-function getUserByID($id) {
+function user_get_by_id($id) {
     // Prepare database query
     $params = array(
         array($id, PDO::PARAM_INT)
         );
-    $sql = execute_query_and_fetch('SELECT * FROM `blog_users` WHERE id = ?', $params);
+    $sql = database_execute_query_and_fetch('SELECT * FROM `blog_users` WHERE id = ?', $params);
 
     // Return user
     return $sql;
 }
 
-function createAccount($user, $password, $name) {
+function user_create($user, $password, $name) {
     if (!empty($user) && !empty($password) && !empty($name)) {
         $params = array (
             array($user, PDO::PARAM_STR),
             array($password, PDO::PARAM_STR),
             array($name, PDO::PARAM_STR)
             );
-        $sql = execute_query('INSERT INTO `blog_users` (user, password, name) VALUES (?, ?, ?)', $params);
+        $sql = database_execute_query('INSERT INTO `blog_users` (user, password, name) VALUES (?, ?, ?)', $params);
         ?>
         <script type="text/javascript">
         alert("Your account has been successfully created");

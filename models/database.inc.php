@@ -1,5 +1,5 @@
 <?php
-function open_database() {
+function database_open_connection() {
     // Set global variable scope
     global $conn;
 
@@ -14,7 +14,7 @@ function open_database() {
     }
 }
 
-function close_database() {
+function database_close_connection() {
     // Set global variable scope
     global $conn;
 
@@ -24,11 +24,11 @@ function close_database() {
     }
 }
 
-function execute_query($query, $params) {
+function database_execute_query($query, $params) {
     // Get connection from global scope
     global $conn;
     // Open database connection
-    open_database();
+    database_open_connection();
 
     // Execute database query
     try {
@@ -44,15 +44,15 @@ function execute_query($query, $params) {
     // Save the number of rows affected
     $result = $sql_query -> rowCount();
     // Close database connection
-    close_database();
+    database_close_connection();
     return $result;
 }
 
-function execute_query_and_fetch($query, $params) {
+function database_execute_query_and_fetch($query, $params) {
     // Get connection from global scope
     global $conn;
     // Open database connection
-    open_database();
+    database_open_connection();
 
     // Execute database query
     try {
@@ -78,7 +78,7 @@ function execute_query_and_fetch($query, $params) {
     }
 
     // Close database connection
-    close_database();
+    database_close_connection();
     return $result;
 }
 ?>

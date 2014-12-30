@@ -10,7 +10,7 @@ require_once '../database.inc.php';
         $sql = 'SELECT * FROM `blog_users` WHERE user = ?';
 
         // Get back no of row affected
-        $result =  execute_query_and_fetch($sql, $params);
+        $result =  database_execute_query_and_fetch($sql, $params);
 
         echo $result;
 ?>

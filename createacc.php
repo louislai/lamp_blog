@@ -10,7 +10,7 @@ require_once VIEW_PATH.'common'.DS.'navbar.php';
 
 // Check if Cancel button pressed
 if (isset($_POST['btnCancel'])) {
-    header('location: index.php');
+    redirect_to('index.php');
     exit();
 }
 
@@ -29,7 +29,7 @@ if (isset($_POST['user']) && isset($_POST['password']) && isset($_POST['name']))
     $password = md5($password);
 
     
-    $sql_result = createAccount($user, $password, $name);
+    $sql_result = user_create($user, $password, $name);
 
 
     // Reset variables

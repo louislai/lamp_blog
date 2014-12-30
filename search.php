@@ -10,7 +10,7 @@ require_once VIEW_PATH.'search.view.php';
 
 // Check if Cancel button pressed
 if (isset($_POST['btnCancel'])) {
-    header('location: index.php');
+    redirect_to('index.php');
     exit();
 }
 
@@ -23,13 +23,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
 
     // Get matching posts
-    $posts = searchPost($keyword);
+    $posts = post_search($keyword);
 
     // Reset variable
     $keyword = null;
 
     // Display matching posts
-    displayAllPosts($posts);
+    post_display_all($posts);
 }
 
 // footer

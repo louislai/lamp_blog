@@ -12,8 +12,8 @@ if (isset($_GET['id']) && intval($_GET['id']) > 0) {
     $id = $_GET['id'];
 
     // Fetch post
-    $post = getPostById($id);
-    displayAllPosts($post);
+    $post = post_get_by_id($id);
+    post_display_all($post);
 }
 
 // footer

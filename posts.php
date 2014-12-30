@@ -12,9 +12,9 @@ require_once VIEW_PATH.'common/navbar.php';
 <?php
 
 
-$posts = getAllPosts();
+$posts = post_get_all();
 
-displayAllPosts($posts);
+post_display_all($posts);
 
 // footer
 require_once VIEW_PATH.'common'.DS.'footer.php';

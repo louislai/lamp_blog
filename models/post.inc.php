@@ -1,12 +1,12 @@
 <?php
-function getAllPosts() {
+function post_get_all() {
     $sql = 'SELECT `blog_posts`.title, content, create_date, update_date, author_id, `blog_posts`.id, `blog_users`.name AS author FROM `blog_posts` INNER JOIN `blog_users` ON `blog_posts`.author_id = `blog_users`.id ORDER BY update_date DESC';
 
     // Execute query and return all posts
-    return execute_query_and_fetch($sql, array());
+    return database_execute_query_and_fetch($sql, array());
 }
 
-function getPostById($id) {
+function post_get_by_id($id) {
     // Build database query
     $sql = 'SELECT `blog_posts`.title, content, create_date, update_date, author_id, `blog_posts`.id, `blog_users`.name AS author FROM `blog_posts` INNER JOIN `blog_users` ON `blog_posts`.author_id = `blog_users`.id WHERE `blog_posts`.id = ?';
     $params = array(
@@ -14,10 +14,10 @@ function getPostById($id) {
     );
 
     // Execute query and return the post
-    return execute_query_and_fetch($sql, $params);
+    return database_execute_query_and_fetch($sql, $params);
 }
 
-function getPostsByAuthorId($id) {
+function post_get_by_author_id($id) {
     // Build database query
     $sql = 'SELECT `blog_posts`.title, content, create_date, update_date, author_id, `blog_posts`.id, `blog_users`.name AS author FROM `blog_posts` INNER JOIN `blog_users` ON `blog_posts`.author_id = `blog_users`.id WHERE author_id = ? ORDER BY update_date DESC';
     $params = array(
@@ -25,10 +25,10 @@ function getPostsByAuthorId($id) {
     );
 
     // Execute query and return all posts by author
-    return execute_query_and_fetch($sql, $params);
+    return database_execute_query_and_fetch($sql, $params);
 }
 
-function insertPost($title, $content, $author_id) {
+function post_insert($title, $content, $author_id) {
     // Build database query
     $sql = 'INSERT INTO `blog_posts` (title, content, author_id, update_date) VALUES (?, ?, ?, now())';
     $params = array(
@@ -38,10 +38,10 @@ function insertPost($title, $content, $author_id) {
     );
 
     // Execute query and return no of posts affected
-    return execute_query($sql, $params);
+    return database_execute_query($sql, $params);
 }
 
-function updatePost($title, $content, $id) {
+function post_update($title, $content, $id) {
     // Build database query
     $sql = 'UPDATE `blog_posts` SET title = ? , content = ?, update_date = now() WHERE id = ?';
     $params = array(
@@ -51,10 +51,10 @@ function updatePost($title, $content, $id) {
     );
 
     // Execute query and return no of posts affected
-    return execute_query($sql, $params);
+    return database_execute_query($sql, $params);
 }
 
-function deletePost($id) {
+function post_delete($id) {
     // Build database query
     $sql = 'DELETE FROM `blog_posts` WHERE id = ?';
     $params = array(
@@ -62,10 +62,10 @@ function deletePost($id) {
     );
 
     // Delete post
-    return execute_query($sql, $params);
+    return database_execute_query($sql, $params);
 }
 
-function displayPost($post) {
+function post_display($post) {
 ?>
 <li>
     <div class="post-box">
@@ -82,8 +82,8 @@ function displayPost($post) {
     if (isset($_SESSION['user_id']) && $post["author_id"] == $_SESSION['user_id']) {
 ?>
                 <span>
-                    <a href="updatepost.php?id=<?php echo $post['id']; ?>">Edit</a>
-                    <a href="deletepost.php?id=<?php echo $row['id']; ?>"
+                    <a href="post_update.php?id=<?php echo $post['id']; ?>">Edit</a>
+                    <a href="post_delete.php?id=<?php echo $row['id']; ?>"
                         onClick = "javascript: return confirm
                         ('Are you sure you want to delete?');">Delete</a>
 
@@ -100,7 +100,7 @@ function displayPost($post) {
 ?>
 
 <?php
-function searchPost($keyword) {
+function post_search($keyword) {
     // Build database query
     $params = array(
         array($keyword, PDO::PARAM_STR)
@@ -108,17 +108,17 @@ function searchPost($keyword) {
     $sql = 'SELECT `blog_posts`.title, content, create_date, update_date, author_id, `blog_posts`.id, `blog_users`.name AS author FROM `blog_posts` INNER JOIN `blog_users` ON `blog_posts`.author_id = `blog_users`.id WHERE MATCH (title, content) AGAINST (? IN BOOLEAN MODE) ORDER BY update_date DESC';
 
     // Execute query and return result
-    return execute_query_and_fetch($sql, $params);
+    return database_execute_query_and_fetch($sql, $params);
 }
 
-function displayAllPosts($posts) {
+function post_display_all($posts) {
     if (isset($posts)) {
         if (isset($posts['title'])) {
         ?>
         <div class="holder"></div>
         <ul id="pagination">
             <?php
-            displayPost($posts);
+            post_display($posts);
             ?>
         </ul>
     <?php
@@ -130,7 +130,7 @@ function displayAllPosts($posts) {
             <?php
             foreach ($posts as $post) {
 
-                displayPost($post, true);
+                post_display($post, true);
             }
         ?>
         </ul>

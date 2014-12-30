@@ -7,6 +7,6 @@ if (isset($_GET['id']) && intval($_GET['id']) > 0) {
     $id = $_GET['id'];
 
     // Delete post
-    $sql_result = deletePost($id);
+    $sql_result = post_delete($id);
 }
 ?>
