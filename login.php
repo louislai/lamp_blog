@@ -1,7 +1,15 @@
 <?php
+
 require_once 'configs'.DIRECTORY_SEPARATOR.'config.inc.php';
 require_once 'configs'.DS.'core.inc.php';
  
+
+// Check if user already logged in and redirect to home page
+if (loggedin()) {
+    redirect_to('index.php');
+    exit();
+}
+
 require_once VIEW_PATH.'common'.DS.'header.php';
 require_once VIEW_PATH.'common'.DS.'navbar.php';
 ?>

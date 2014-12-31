@@ -8,6 +8,9 @@ require_once VIEW_PATH.'common'.DS.'navbar.php';
 
 $id = null;
 
+// Prevent direct access to add comment
+define('INCLUDED', TRUE);
+
 // Check the query string for a numeric id
 if (isset($_GET['id']) && intval($_GET['id']) > 0) {
     // Get id from querystring
@@ -21,28 +24,9 @@ if (isset($_GET['id']) && intval($_GET['id']) > 0) {
 	post_display($post, true);
 
     // For adding new comments
-	require_once VIEW_PATH . 'addcomment.view.php';
+	require_once 'addcomment.php';
 
-    // Check for postback of comment
-	if ($_SERVER['REQUEST_METHOD']  == 'POST' && isset($_POST['comment'])) {
-	// Prepare variables
-		$comment = $_POST['comment'];
-		$author_id = $_SESSION['user_id'];
-		$post_id = $id;
-
-	// Insert comment
-		$result = comment_insert($comment, $post_id, $author_id);
-
-	// Reset variables
-		$comment = null;
-		$author_id = null;
-		$post_id = null;
-
-	
-	}
-
-	
-
+    
 }
 
 

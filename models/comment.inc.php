@@ -93,7 +93,7 @@ function comment_display($comment) {
 
 function comment_display_all($comments) {
     echo '<hr><hr><h4> Comments</h4>';
-    
+    echo '<div id="comment-holder">';
     if (isset($comments)) {
         if (isset($comments['comment'])) {
             comment_display($comments);
@@ -104,19 +104,19 @@ function comment_display_all($comments) {
         }
     } else { 
  ?>
- <div class="comment-box">
-    <p> No comments found. 
-    
-    <?php 
-    if (loggedin()) {
-        echo 'You can be the first to comment.';
-    } else {
-        echo 'Please log in to comment.';
-    }
-    ?> 
-    </p>
+     <div class="comment-box">
+        <p> No comments found. 
+        
+        <?php 
+        if (loggedin()) {
+            echo 'You can be the first to comment.';
+        } else {
+            echo 'Please log in to comment.';
+        }
+        ?> 
+        </p>
+    </div>
 </div>
-
 <?php
 }
 }

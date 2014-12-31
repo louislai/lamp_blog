@@ -13,6 +13,8 @@ if (isset($_SESSION['user_id'])) {
     $posts = post_get_by_author_id($_SESSION['user_id']);
 
     post_display_all($posts);
+} else {
+	die('You are not authenticated to be here');
 }
 
 // footer

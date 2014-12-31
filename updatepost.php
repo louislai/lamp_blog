@@ -3,6 +3,12 @@
 require_once 'configs'.DIRECTORY_SEPARATOR.'config.inc.php';
 require_once 'configs'.DS.'core.inc.php';
  
+// Prevent anonymous user from updating post
+if (!loggedin()) {
+    die('You are not logged in');
+}
+
+
 require_once VIEW_PATH.'common'.DS.'header.php';
 require_once VIEW_PATH.'common'.DS.'navbar.php';
 
