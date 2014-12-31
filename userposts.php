@@ -8,6 +8,7 @@ require_once VIEW_PATH.'common'.DS.'navbar.php';
 
 <?php
 
+
 if (isset($_SESSION['user_id'])) {
     $posts = post_get_by_author_id($_SESSION['user_id']);
 

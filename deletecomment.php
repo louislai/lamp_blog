@@ -8,17 +8,17 @@ if (isset($_GET['id']) && intval($_GET['id']) > 0) {
     $id = $_GET['id'];
 
     // // Fetch row from database to validate
-    $post = post_get_by_id($id);
+    $comment = comment_get_by_id($id);
 
     // Prevent unauthentic user
-    if (!isset($_SESSION['user_id']) || ($_SESSION['user_id'] != $post['author_id'])) {
-        die('Not owner of post');
+    if (!isset($_SESSION['user_id']) || ($_SESSION['user_id'] != $comment['author_id'])) {
+        die($comment['author_id'] );
     }
 
-    // Delete post
-    $sql_result = post_delete($id);
+    // Delete comment
+    $sql_result = comment_delete($id);
 
-    // Redirect to home page
-    redirect_to('index.php');
+    // Redirect to post page
+    redirect_to('viewpost.php?id=' . $_SESSION['post_id']);
 }
 ?>

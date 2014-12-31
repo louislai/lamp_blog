@@ -23,8 +23,9 @@ define('VIEW_PATH', SITE_ROOT.'views'.DS);
 define('ASSET_PATH', SITE_ROOT.'assets'.DS);
 
 // Include models
-require_once(MODEL_PATH.'functions.inc.php');
-require_once(MODEL_PATH.'database.inc.php');
-require_once(MODEL_PATH.'post.inc.php');
-require_once(MODEL_PATH.'user.inc.php');
+require_once(MODEL_PATH . 'functions.inc.php');
+require_once(MODEL_PATH . 'database.inc.php');
+require_once(MODEL_PATH . 'post.inc.php');
+require_once(MODEL_PATH . 'user.inc.php');
+require_once(MODEL_PATH . 'comment.inc.php');
 ?>

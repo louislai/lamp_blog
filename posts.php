@@ -11,7 +11,6 @@ require_once VIEW_PATH.'common/navbar.php';
 
 <?php
 
-
 $posts = post_get_all();
 
 post_display_all($posts);

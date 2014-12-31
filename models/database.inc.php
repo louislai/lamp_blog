@@ -24,7 +24,7 @@ function database_close_connection() {
     }
 }
 
-function database_execute_query($query, $params) {
+function database_execute_query($query, $params=array()) {
     // Get connection from global scope
     global $conn;
     // Open database connection
@@ -48,7 +48,7 @@ function database_execute_query($query, $params) {
     return $result;
 }
 
-function database_execute_query_and_fetch($query, $params) {
+function database_execute_query_and_fetch($query, $params=array()) {
     // Get connection from global scope
     global $conn;
     // Open database connection

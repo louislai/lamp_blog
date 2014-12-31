@@ -1,6 +1,6 @@
 <?php
 function post_get_all() {
-    $sql = 'SELECT `blog_posts`.title, content, create_date, update_date, author_id, `blog_posts`.id, `blog_users`.name AS author FROM `blog_posts` INNER JOIN `blog_users` ON `blog_posts`.author_id = `blog_users`.id ORDER BY update_date DESC';
+    $sql = 'SELECT `blog_posts`.title, `blog_posts`.id, content, create_date, update_date, author_id, `blog_posts`.id, `blog_users`.name AS author FROM `blog_posts` INNER JOIN `blog_users` ON `blog_posts`.author_id = `blog_users`.id ORDER BY update_date DESC';
 
     // Execute query and return all posts
     return database_execute_query_and_fetch($sql, array());
@@ -8,7 +8,7 @@ function post_get_all() {
 
 function post_get_by_id($id) {
     // Build database query
-    $sql = 'SELECT `blog_posts`.title, content, create_date, update_date, author_id, `blog_posts`.id, `blog_users`.name AS author FROM `blog_posts` INNER JOIN `blog_users` ON `blog_posts`.author_id = `blog_users`.id WHERE `blog_posts`.id = ?';
+    $sql = 'SELECT `blog_posts`.title, `blog_posts`.id, content, create_date, update_date, author_id, `blog_posts`.id, `blog_users`.name AS author FROM `blog_posts` INNER JOIN `blog_users` ON `blog_posts`.author_id = `blog_users`.id WHERE `blog_posts`.id = ?';
     $params = array(
         array($id, PDO::PARAM_INT)
     );
@@ -19,7 +19,7 @@ function post_get_by_id($id) {
 
 function post_get_by_author_id($id) {
     // Build database query
-    $sql = 'SELECT `blog_posts`.title, content, create_date, update_date, author_id, `blog_posts`.id, `blog_users`.name AS author FROM `blog_posts` INNER JOIN `blog_users` ON `blog_posts`.author_id = `blog_users`.id WHERE author_id = ? ORDER BY update_date DESC';
+    $sql = 'SELECT `blog_posts`.title, `blog_posts`.id, content, create_date, update_date, author_id, `blog_posts`.id, `blog_users`.name AS author FROM `blog_posts` INNER JOIN `blog_users` ON `blog_posts`.author_id = `blog_users`.id WHERE author_id = ? ORDER BY update_date DESC';
     $params = array(
         array($id, PDO::PARAM_INT)
     );
@@ -65,36 +65,54 @@ function post_delete($id) {
     return database_execute_query($sql, $params);
 }
 
-function post_display($post) {
+function post_display($post, $isFullPost=false) {
+
+// ul wrapper for viewpost
+if ($isFullPost) { echo '<ul class = "view-post">';}
 ?>
 <li>
     <div class="post-box">
-        <h5> <?php echo $post['title']?></h5>
+        <h5>
+            <?php if (!$isFullPost) { ?> <a href="viewpost.php?id=<?php echo $post['id']; ?>"> <?php } ?>
+                <?php echo $post['title']?>
+            <?php if (!$isFullPost) { ?> </a> <?php } ?>
+        </h5>
+        
         <p><small class="text-muted">
             <?php echo $post['update_date']?> by <?php echo $post['author']?></small>
         </p>
         
-            <article><?php echo $post['content'] ?> </article>
+            <div <?php if (!$isFullPost) { echo 'class="post_read_more"'; } ?> >
+                <?php echo $post['content'] ?> 
+            </div>
 
-<?php
-
+    <?php
+    
     // Check if user is post author
     if (isset($_SESSION['user_id']) && $post["author_id"] == $_SESSION['user_id']) {
 ?>
                 <span>
-                    <a href="post_update.php?id=<?php echo $post['id']; ?>">Edit</a>
-                    <a href="post_delete.php?id=<?php echo $row['id']; ?>"
+                    <a href="updatepost.php?id=<?php echo $post['id']; ?>">Edit</a>
+                    <a href="deletepost.php?id=<?php echo $post['id']; ?>"
                         onClick = "javascript: return confirm
                         ('Are you sure you want to delete?');">Delete</a>
 
-                    </span>
-                
+                </span>
+               
 <?php
     }
 ?>
     </div>
 </li>
 <?php
+if ($isFullPost) { echo '</ul>';}
+
+// Display comments on full view
+
+    if ($isFullPost) {
+        $comments = comment_get_by_post_id($post['id']);
+        comment_display_all($comments);
+    }
 }
 
 ?>
@@ -130,7 +148,7 @@ function post_display_all($posts) {
             <?php
             foreach ($posts as $post) {
 
-                post_display($post, true);
+                post_display($post);
             }
         ?>
         </ul>

@@ -1,4 +1,5 @@
 <?php
+
 require_once 'configs'.DIRECTORY_SEPARATOR.'config.inc.php';
 require_once 'configs'.DS.'core.inc.php';
  
@@ -24,11 +25,15 @@ if (isset($_GET['id']) && intval($_GET['id']) > 0) {
     $id = $_GET['id'];
 
     // Fetch row from database
-    $row = post_get_by_id($id);
+    $post = post_get_by_id($id);
 
+    // Prevent unauthentic user
+    if (!isset($_SESSION['user_id']) || ($_SESSION['user_id'] != $post['author_id'])) {
+        die('Not owner of post');
+    }
     // Set form values
-    $title = $row['title'];
-    $content = $row['content'];
+    $title = $post['title'];
+    $content = $post['content'];
 }
 
 // Check for page postback
@@ -54,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 // Require view
-require_once VIEW_PATH.'post_update.view.php';
+require_once VIEW_PATH.'updatepost.view.php';
 
 // footer
 require_once VIEW_PATH.'common'.DS.'footer.php';

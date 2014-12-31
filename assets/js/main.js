@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('article').readmore({
+    $('.post_read_more').readmore({
         maxHeight: 100
     });
 
