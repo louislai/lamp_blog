@@ -1,11 +1,13 @@
 <?php
 
-// Prevent direct access
-if (!defined('INCLUDED')) {
-	die('Does not permit direct access');
-}
+
 require_once 'configs'.DIRECTORY_SEPARATOR.'config.inc.php';
 require_once 'configs'.DS.'core.inc.php';
+
+// Prevent unauthenticated access
+if (!loggedin()) {
+	die('Does not permit direct access');
+}
 
 // View
 require_once VIEW_PATH . 'addcomment.view.php';

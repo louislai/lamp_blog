@@ -8,8 +8,6 @@ require_once VIEW_PATH.'common'.DS.'navbar.php';
 
 $id = null;
 
-// Prevent direct access to add comment
-define('INCLUDED', TRUE);
 
 // Check the query string for a numeric id
 if (isset($_GET['id']) && intval($_GET['id']) > 0) {
