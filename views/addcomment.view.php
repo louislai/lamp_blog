@@ -10,4 +10,10 @@
        </form>
 </div>
 <?php
+} else {
+	?>
+	<div class="comment-box">
+		Please login to comment
+	</div>
+	<?php
 }

@@ -19,12 +19,12 @@ if (isset($_GET['id']) && intval($_GET['id']) > 0) {
 
     // Fetch post
 	$post = post_get_by_id($id);
-	post_display($post, true);
+	post_display($post, true);  
 
-    // For adding new comments
+	
+	// For adding new comments
 	require_once 'addcomment.php';
 
-    
 }
 
 
