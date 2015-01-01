@@ -6,7 +6,7 @@ require_once 'configs'.DS.'core.inc.php';
 
 // Prevent unauthenticated access
 if (!loggedin()) {
-	die('Does not permit direct access');
+    exit();
 }
 
 // View
