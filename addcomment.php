@@ -4,11 +4,6 @@
 require_once 'configs'.DIRECTORY_SEPARATOR.'config.inc.php';
 require_once 'configs'.DS.'core.inc.php';
 
-// Prevent unauthenticated access
-if (!loggedin()) {
-    exit();
-}
-
 // View
 require_once VIEW_PATH . 'addcomment.view.php';
 
