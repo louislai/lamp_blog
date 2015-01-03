@@ -181,3 +181,8 @@ ul.view-post {
     list-style: none;
     padding: 0;
 }
+
+.clear-below {
+    position: relative;
+    clear: both;
+}

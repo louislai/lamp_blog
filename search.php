@@ -28,8 +28,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Reset variable
     $keyword = null;
 
+    
+    // Div wrapper
+    echo '<div  class="clear-below">';
+
+    // Header 
+    echo '<hr><hr><h4>Search Results</h4>';
+    
     // Display matching posts
     post_display_all($posts);
+    echo '</div>';
 }
 
 // footer
