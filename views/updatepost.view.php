@@ -5,7 +5,7 @@
             <legend>Update Your Post</legend>
             <div class="form-group">
                 <label for="title">Title</label>
-                <input value='' name="title" placeholder="<?php echo sanitize_output($title); ?>" type="text" class="form-control" required/>
+                <input name="title" value="<?php echo sanitize_output($title); ?>" type="text" class="form-control" required/>
             </div>
             <div class="form-group">
                 <label for="content">Content</label>

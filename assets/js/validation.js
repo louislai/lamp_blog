@@ -4,9 +4,6 @@ $(document).ready(function() {
     $('#repassword').keyup(check_password);
     $('#register').submit(function() {
         if (!validation_ok()) {
-            console.log(validation_ok());
-            console.log(' dfsds'+check_username());
-            console.log('drwrwer'+check_password());
             event.preventDefault();
             alert("Please fix your fields to proceed");
         }
@@ -25,24 +22,24 @@ function check_username() {
     var result;
     $.ajax({
         type: 'POST',
-    url: 'models/validations/validate_account.php',
-    data: {
-        username: $('#username').val(),
-    },
-    cache: false,
-    success: function(response) {
-        if (response == 0) {
-            var message = document.getElementById('checkUsername');
-            message.style.color = "#66cc66";
-            message.innerHTML = "Username is available";
-            result = true;
-        } else {
-            var message = document.getElementById('checkUsername');
-            message.style.color = "#ff6666";;
-            message.innerHTML = "Username has duplicate in the database";
-            result = false;
+        url: 'models/validations/validate_account.php',
+        data: {
+            username: $('#username').val(),
+        },
+        cache: false,
+        success: function(response) {
+            if (response == 0) {
+                var message = document.getElementById('checkUsername');
+                message.style.color = "#66cc66";
+                message.innerHTML = "Username is available";
+                result = true;
+            } else {
+                var message = document.getElementById('checkUsername');
+                message.style.color = "#ff6666";;
+                message.innerHTML = "Username has duplicate in the database";
+                result = false;
+            }
         }
-    }
 
     });
     return result;

@@ -1,36 +1,36 @@
 <?php
 function post_get_all() {
-    $sql = 'SELECT `blog_posts`.title, `blog_posts`.id, content, create_date, update_date, author_id, `blog_posts`.id, `blog_users`.name AS author FROM `blog_posts` INNER JOIN `blog_users` ON `blog_posts`.author_id = `blog_users`.id ORDER BY update_date DESC';
+    $sql_query = 'SELECT `blog_posts`.title, `blog_posts`.id, content, create_date, update_date, author_id, `blog_posts`.id, `blog_users`.name AS author FROM `blog_posts` INNER JOIN `blog_users` ON `blog_posts`.author_id = `blog_users`.id ORDER BY update_date DESC';
 
     // Execute query and return all posts
-    return database_execute_query_and_fetch($sql, array());
+    return database_execute_query_and_fetch($sql_query, array());
 }
 
 function post_get_by_id($id) {
     // Build database query
-    $sql = 'SELECT `blog_posts`.title, `blog_posts`.id, content, create_date, update_date, author_id, `blog_posts`.id, `blog_users`.name AS author FROM `blog_posts` INNER JOIN `blog_users` ON `blog_posts`.author_id = `blog_users`.id WHERE `blog_posts`.id = ?';
+    $sql_query = 'SELECT `blog_posts`.title, `blog_posts`.id, content, create_date, update_date, author_id, `blog_posts`.id, `blog_users`.name AS author FROM `blog_posts` INNER JOIN `blog_users` ON `blog_posts`.author_id = `blog_users`.id WHERE `blog_posts`.id = ?';
     $params = array(
         array($id, PDO::PARAM_INT)
     );
 
     // Execute query and return the post
-    return database_execute_query_and_fetch($sql, $params);
+    return database_execute_query_and_fetch($sql_query, $params);
 }
 
 function post_get_by_author_id($id) {
     // Build database query
-    $sql = 'SELECT `blog_posts`.title, `blog_posts`.id, content, create_date, update_date, author_id, `blog_posts`.id, `blog_users`.name AS author FROM `blog_posts` INNER JOIN `blog_users` ON `blog_posts`.author_id = `blog_users`.id WHERE author_id = ? ORDER BY update_date DESC';
+    $sql_query = 'SELECT `blog_posts`.title, `blog_posts`.id, content, create_date, update_date, author_id, `blog_posts`.id, `blog_users`.name AS author FROM `blog_posts` INNER JOIN `blog_users` ON `blog_posts`.author_id = `blog_users`.id WHERE author_id = ? ORDER BY update_date DESC';
     $params = array(
         array($id, PDO::PARAM_INT)
     );
 
     // Execute query and return all posts by author
-    return database_execute_query_and_fetch($sql, $params);
+    return database_execute_query_and_fetch($sql_query, $params);
 }
 
 function post_insert($title, $content, $author_id) {
     // Build database query
-    $sql = 'INSERT INTO `blog_posts` (title, content, author_id, update_date) VALUES (?, ?, ?, now())';
+    $sql_query = 'INSERT INTO `blog_posts` (title, content, author_id, update_date) VALUES (?, ?, ?, now())';
     $params = array(
         array($title, PDO::PARAM_STR),
         array($content, PDO::PARAM_STR),
@@ -38,12 +38,12 @@ function post_insert($title, $content, $author_id) {
     );
 
     // Execute query and return no of posts affected
-    return database_execute_query($sql, $params);
+    return database_execute_query($sql_query, $params);
 }
 
 function post_update($title, $content, $id) {
     // Build database query
-    $sql = 'UPDATE `blog_posts` SET title = ? , content = ?, update_date = now() WHERE id = ?';
+    $sql_query = 'UPDATE `blog_posts` SET title = ? , content = ?, update_date = now() WHERE id = ?';
     $params = array(
         array($title, PDO::PARAM_STR),
         array($content, PDO::PARAM_STR),
@@ -51,18 +51,18 @@ function post_update($title, $content, $id) {
     );
 
     // Execute query and return no of posts affected
-    return database_execute_query($sql, $params);
+    return database_execute_query($sql_query, $params);
 }
 
 function post_delete($id) {
     // Build database query
-    $sql = 'DELETE FROM `blog_posts` WHERE id = ?';
+    $sql_query = 'DELETE FROM `blog_posts` WHERE id = ?';
     $params = array(
         array($id, PDO::PARAM_INT)
     );
 
     // Delete post
-    return database_execute_query($sql, $params);
+    return database_execute_query($sql_query, $params);
 }
 
 function post_display($post, $isFullPost=false) {
@@ -72,11 +72,11 @@ if ($isFullPost) { echo '<ul class = "view-post">';}
 ?>
 <li>
     <div class="post-box">
-        <h5>
+        <h2>
             <?php if (!$isFullPost) { ?> <a href="viewpost.php?id=<?php echo $post['id']; ?>"> <?php } ?>
                 <?php echo $post['title']?>
             <?php if (!$isFullPost) { ?> </a> <?php } ?>
-        </h5>
+        </h2>
         
         <p><small class="text-muted">
             <?php echo $post['update_date']?> by <?php echo $post['author']?></small>
@@ -123,10 +123,10 @@ function post_search($keyword) {
     $params = array(
         array($keyword, PDO::PARAM_STR)
     );
-    $sql = 'SELECT `blog_posts`.title, content, create_date, update_date, author_id, `blog_posts`.id, `blog_users`.name AS author FROM `blog_posts` INNER JOIN `blog_users` ON `blog_posts`.author_id = `blog_users`.id WHERE MATCH (title, content) AGAINST (? IN BOOLEAN MODE) ORDER BY update_date DESC';
+    $sql_query = 'SELECT `blog_posts`.title, content, create_date, update_date, author_id, `blog_posts`.id, `blog_users`.name AS author FROM `blog_posts` INNER JOIN `blog_users` ON `blog_posts`.author_id = `blog_users`.id WHERE MATCH (title, content) AGAINST (? IN BOOLEAN MODE) ORDER BY update_date DESC';
 
     // Execute query and return result
-    return database_execute_query_and_fetch($sql, $params);
+    return database_execute_query_and_fetch($sql_query, $params);
 }
 
 function post_display_all($posts) {

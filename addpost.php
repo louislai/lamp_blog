@@ -12,6 +12,11 @@ if (!loggedin()) {
 require_once VIEW_PATH.'common'.DS.'header.php';
 require_once VIEW_PATH.'common'.DS.'navbar.php';
 
+// Obtained stashed unsaved post
+$stashed_post = user_get_stashed_post($_SESSION['user_id']);
+$stashed_title = $stashed_post['stored_title'];
+$stashed_content = $stashed_post['stored_content'];
+
 // Check if Cancel button pressed
 if (isset($_POST['btnCancel'])) {
     redirect_to('index.php');

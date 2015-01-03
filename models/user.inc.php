@@ -53,3 +53,33 @@ function user_create($user, $password, $name) {
         <?php
     }
 }
+
+function user_stash_post_title($user_id, $title) {
+    // Prepare database query
+    $params = array(
+        array($title, PDO::PARAM_STR),
+        array($user_id, PDO::PARAM_INT)
+        );
+
+    $sql = database_execute_query('UPDATE `blog_users` SET stored_title = ? WHERE id = ?', $params);
+}
+
+function user_stash_post_content($user_id, $content) {
+    // Prepare database query
+    $params = array(
+        array($content, PDO::PARAM_STR),
+        array($user_id, PDO::PARAM_INT)
+        );
+
+    $sql = database_execute_query('UPDATE `blog_users` SET stored_content = ? WHERE id = ?', $params);
+}
+
+function user_get_stashed_post($id) {
+    // Prepare database query
+    $params = array(
+        array($id, PDO::PARAM_INT)
+        );
+    $sql_query = 'SELECT * FROM `blog_users` WHERE id = ?';
+
+    return database_execute_query_and_fetch($sql_query, $params);
+}
