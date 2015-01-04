@@ -4,7 +4,7 @@
 		<form action="<?php echo $current_file; ?>" method="POST">
 			<legend>Log in</legend>
 			<div class="form-group">
-				<label for="name">Name</label>
+				<label for="name">Username</label>
 				<input value='' name="user" placeholder="Username" type="text" class="form-control" required/>
 			</div>
 			<div class="form-group">
