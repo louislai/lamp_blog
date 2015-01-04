@@ -64,6 +64,7 @@ function comment_display($comment) {
     <div>
         <?php echo $comment['comment'] ?> 
     </div>
+    <hr>
     <p>
       <small class="text-muted">
          Comment by <?php echo $comment['author']?> on <?php echo $comment['create_date']?>
@@ -74,6 +75,7 @@ function comment_display($comment) {
     // Check if user is comment author
     if (isset($_SESSION['user_id']) && $comment["author_id"] == $_SESSION['user_id']) {
     ?>
+    <hr>
     <span>
 
         <a href="deletecomment.php?id=<?php echo $comment['id']; ?>"
