@@ -78,9 +78,9 @@ function comment_display($comment) {
     <hr>
     <span>
 
-        <a href="deletecomment.php?id=<?php echo $comment['id']; ?>"
+        <a class="btn btn-danger" href="deletecomment.php?id=<?php echo $comment['id']; ?>"
             onClick = "javascript: return confirm
-            ('Are you sure you want to delete?');">Delete</a>
+            ('Are you sure you want to delete?');"><span class="glyphicon glyphicon-trash" aria-hidden="true"> Delete</a>
 
         </span>
     
