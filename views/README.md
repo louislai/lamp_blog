@@ -1,1 +1,0 @@
-This is the source code for the CVWO blog building assignment
