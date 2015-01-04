@@ -164,9 +164,6 @@ function post_display_all($posts) {
         </div>
         <?php
     }
-    ?>
-    <hr><br><div class="holder"></div>
-    <?php
 }
 
 ?>

@@ -8,8 +8,9 @@
     <meta name="author" content="Louis Lai">
     <!-- Force IE to render the correct style -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
+    <div class="navbar-header">
     <title>Simple Blog by Louis Lai</title>
+    </div>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
