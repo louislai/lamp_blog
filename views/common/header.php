@@ -13,6 +13,8 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
     
     <!-- JPages stylesheet -->
     <link rel="stylesheet" href="assets/css/jPage.css">

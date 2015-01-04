@@ -2,7 +2,7 @@
 <div class="col-md-6 col-md-offset-2" id="login-box">
 	<div class="well wlform-box">
 		<form action="<?php echo $current_file; ?>" method="POST">
-			<legend>Login</legend>
+			<legend>Log in</legend>
 			<div class="form-group">
 				<label for="name">Name</label>
 				<input value='' name="user" placeholder="Username" type="text" class="form-control" required/>

@@ -9,13 +9,18 @@ require_once VIEW_PATH.'common'.DS.'navbar.php';
 <?php
 
 
-if (isset($_SESSION['user_id'])) {
-    $posts = post_get_by_author_id($_SESSION['user_id']);
+// Check the query string for a numeric id
+if (isset($_GET['id']) && intval($_GET['id']) > 0) {
+	$id = $_GET['id'];
 
+	// Fetch user details
+	$user = user_get_by_id($id);
+	echo '<div><h3> Blog Posts by ' . $user['name'] . '</h3></div>';
+
+	// Display posts
+    $posts = post_get_by_author_id($id);
     post_display_all($posts);
-} else {
-	die('You are not authenticated to be here');
-}
+} 
 
 // footer
 require_once VIEW_PATH.'common'.DS.'footer.php';

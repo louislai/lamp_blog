@@ -17,6 +17,7 @@ if (isset($_GET['id']) && intval($_GET['id']) > 0) {
 	// Set current post in SESSION
 	$_SESSION['post_id'] = $id;
 
+
     // Fetch post
 	$post = post_get_by_id($id);
 	post_display($post, true);  

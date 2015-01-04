@@ -68,52 +68,54 @@ function post_delete($id) {
 function post_display($post, $isFullPost=false) {
 
 // ul wrapper for viewpost
-if ($isFullPost) { echo '<ul class = "view-post">';}
-?>
-<li>
-    <div class="post-box">
-        <h2>
-            <?php if (!$isFullPost) { ?> <a href="viewpost.php?id=<?php echo $post['id']; ?>"> <?php } ?>
+    if ($isFullPost) { echo '<ul class = "view-post">';}
+    ?>
+    <li>
+        <div class="post-box">
+            <h2>
+                <?php if (!$isFullPost) { ?> <a href="viewpost.php?id=<?php echo $post['id']; ?>"> <?php } ?>
                 <?php echo $post['title']?>
-            <?php if (!$isFullPost) { ?> </a> <?php } ?>
-        </h2>
-        
-        <p><small class="text-muted">
-            <?php echo $post['update_date']?> by <?php echo $post['author']?></small>
-        </p>
-        
-            <div <?php if (!$isFullPost) { echo 'class="post_read_more"'; } ?> >
-                <?php echo $post['content'] ?> 
-            </div>
+                <?php if (!$isFullPost) { ?> </a> <?php } ?>
+            </h2>
 
-    <?php
-    
-    // Check if user is post author
-    if (isset($_SESSION['user_id']) && $post["author_id"] == $_SESSION['user_id']) {
-?>
-                <span>
-                    <a href="updatepost.php?id=<?php echo $post['id']; ?>">Edit</a>
-                    <a href="deletepost.php?id=<?php echo $post['id']; ?>"
-                        onClick = "javascript: return confirm
-                        ('Are you sure you want to delete?');">Delete</a>
+            <p><small class="text-muted">
+                <span class="glyphicon glyphicon-user" aria-hidden="true"><a href="userposts.php?id=<?php echo $post['author_id']; ?>"><?php echo ' ' . $post['author'] . '</a><br>'?>
+                    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span><?php echo ' '.date('F j, Y, g:i a', strtotime(str_replace('-','/', $post['create_date']))) . ' (Last editted on ' . date('F j, Y, g:i a', strtotime(str_replace('-','/', $post['update_date']))) . ')'; ?> </small>
+                </p>
+                <hr>
+                <div <?php if (!$isFullPost) { echo 'class="post_read_more"'; } ?> >
+                    <?php echo $post['content'] ?> 
+                </div>
 
-                </span>
-               
-<?php
-    }
-?>
-    </div>
-</li>
-<?php
-if ($isFullPost) { echo '</ul>';}
+                <?php
 
-// Display comments on full view
+                // Check if user is post author
+                if (isset($_SESSION['user_id']) && $post["author_id"] == $_SESSION['user_id']) {
+                    ?>
+                    <span>
+                        <hr>
+                        <a class="btn btn-warning" href="updatepost.php?id=<?php echo $post['id']; ?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Edit</a>
+                        <a class="btn btn-danger" href="deletepost.php?id=<?php echo $post['id']; ?>"
+                            onClick = "javascript: return confirm
+                            ('Are you sure you want to delete?');"><span class="glyphicon glyphicon-trash" aria-hidden="true"> Delete</a>
 
-    if ($isFullPost) {
-        $comments = comment_get_by_post_id($post['id']);
-        comment_display_all($comments);
-    }
-}
+                        </span>
+
+                        <?php
+                    }
+                    ?>
+                </div>
+            </li>
+            <?php
+            if ($isFullPost) { echo '</ul>';}
+
+            // Display comments on full view
+
+            if ($isFullPost) {
+                $comments = comment_get_by_post_id($post['id']);
+                comment_display_all($comments);
+            }
+        }
 
 ?>
 
@@ -132,35 +134,35 @@ function post_search($keyword) {
 function post_display_all($posts) {
     if (isset($posts)) {
         if (isset($posts['title'])) {
-        ?>
-        <div class="holder"></div>
-        <ul id="pagination">
-            <?php
-            post_display($posts);
             ?>
-        </ul>
-    <?php
+            <div class="holder"></div>
+            <ul id="pagination">
+                <?php
+                post_display($posts);
+                ?>
+            </ul>
+            <?php
         } else {
             ?>
-    <!-- Page navigation panel -->
-    <div class="holder"></div>
-        <ul id="pagination">
-            <?php
-            foreach ($posts as $post) {
+            <!-- Page navigation panel -->
+            <div class="holder"></div>
+            <ul id="pagination">
+                <?php
+                foreach ($posts as $post) {
 
-                post_display($post);
-            }
-        ?>
-        </ul>
-    <?php
+                    post_display($post);
+                }
+                ?>
+            </ul>
+            <?php
         }
     } else {
-?>
-                
-                <div class="post-box">
-                    <p> No posts found :( </p>
-                </div>
-<?php
+        ?>
+
+        <div class="post-box">
+            <p> No posts found :( </p>
+        </div>
+        <?php
     }
 }
 
