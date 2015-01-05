@@ -74,7 +74,7 @@ function comment_display($comment) {
     <hr>
     <p>
       <small class="text-muted">
-         Comment by <a href="userposts.php?id=<?php echo santize_output($comment['author_id']); ?>"><?php echo sanitize_output($comment['author'])?></a> on <?php echo sanitize_output($comment['create_date'])?>
+         Comment by <a href="userposts.php?id=<?php echo sanitize_output($comment['author_id']); ?>"><?php echo sanitize_output($comment['author'])?></a> on <?php echo sanitize_output($comment['create_date'])?>
      </small>
  </p>
  <?php
@@ -87,7 +87,7 @@ function comment_display($comment) {
 
         <a class="btn btn-danger" href="deletecomment.php?id=<?php echo sanitize_output($comment['id']); ?>"
             onClick = "javascript: return confirm
-            ('Are you sure you want to delete?');"><span class="glyphicon glyphicon-trash" aria-hidden="true"> Delete</a>
+            ('Are you sure you want to delete?');"><span class="glyphicon glyphicon-trash" aria-hidden="true"> </span> Delete</a>
 
         </span>
     
