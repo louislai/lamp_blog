@@ -1,4 +1,11 @@
 <?php
+require_once('Parsedown.php');
+
+function render_content($content) {
+    $renderer = new Parsedown();
+    return $renderer->text($content);
+}
+
 function post_get_all() {
     $sql_query = 'SELECT `blog_posts`.title, `blog_posts`.id, content, create_date, update_date, author_id, `blog_posts`.id, `blog_users`.name AS author FROM `blog_posts` INNER JOIN `blog_users` ON `blog_posts`.author_id = `blog_users`.id ORDER BY update_date DESC';
 
@@ -84,7 +91,7 @@ function post_display($post, $isFullPost=false) {
                 </p>
                 <hr>
                 <div <?php if (!$isFullPost) { echo 'class="post_read_more"'; } ?> >
-                    <?php echo sanitize_output($post['content']) ?> 
+                    <?php echo render_content(sanitize_output($post['content'])) ?> 
                 </div>
 
                 <?php
@@ -94,12 +101,12 @@ function post_display($post, $isFullPost=false) {
                     ?>
                     <span>
                         <hr>
-                        <a class="btn btn-warning" href="updatepost.php?id=<?php echo sanitize_output($post['id']); ?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Edit</a>
+                        <a class="btn btn-warning" href="updatepost.php?id=<?php echo sanitize_output($post['id']); ?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit</a>
                         <a class="btn btn-danger" href="deletepost.php?id=<?php echo sanitize_output($post['id']); ?>"
                             onClick = "javascript: return confirm
-                            ('Are you sure you want to delete?');"><span class="glyphicon glyphicon-trash" aria-hidden="true"> Delete</a>
+                            ('Are you sure you want to delete?');"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</a>
 
-                        </span>
+                    </span>
 
                         <?php
                     }

@@ -1,4 +1,10 @@
 <?php
+require_once('Parsedown.php');
+
+function render_comment($content) {
+    $renderer = new Parsedown();
+    return $renderer->text($content);
+}
 
 function comment_insert($comment, $post_id, $author_id) {
 	// Build database query
@@ -62,7 +68,7 @@ function comment_display($comment) {
   <div class="comment-box">
 
     <div>
-        <?php echo santize_output($comment['comment']) ?> 
+        <?php echo render_comment(santize_output($comment['comment'])) ?> 
     </div>
     <hr>
     <p>

@@ -8,9 +8,7 @@
     <meta name="author" content="Louis Lai">
     <!-- Force IE to render the correct style -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <div class="navbar-header">
-    <title>Simple Blog by Louis Lai</title>
-    </div>
+    
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -36,9 +34,12 @@
 
     <!-- User defined js -->
     <script src="assets/js/main.js"></script>
-    </head>
+</head>
 <body>
-<div class="page-header">
-<h1> A Simple Blog by Louis Lai </h1>
-</div>
+    <div class="navbar-header">
+        <title>Simple Blog by Louis Lai</title>
+    </div>
+    <div class="page-header">
+        <h1> A Simple Blog by Louis Lai </h1>
+    </div>
 
