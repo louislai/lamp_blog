@@ -97,6 +97,7 @@ function comment_display($comment) {
     }
     ?>
     </div>
+</div>
     <?php
 }
 
