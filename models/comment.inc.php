@@ -62,23 +62,23 @@ function comment_display($comment) {
   <div class="comment-box">
 
     <div>
-        <?php echo $comment['comment'] ?> 
+        <?php echo santize_output($comment['comment']) ?> 
     </div>
     <hr>
     <p>
       <small class="text-muted">
-         Comment by <a href="userposts.php?id=<?php echo $comment['author_id']; ?>"><?php echo $comment['author']?></a> on <?php echo $comment['create_date']?>
+         Comment by <a href="userposts.php?id=<?php echo santize_output($comment['author_id']); ?>"><?php echo sanitize_output($comment['author'])?></a> on <?php echo sanitize_output($comment['create_date'])?>
      </small>
  </p>
  <?php
  
     // Check if user is comment author
-    if (isset($_SESSION['user_id']) && $comment["author_id"] == $_SESSION['user_id']) {
+    if (isset($_SESSION['user_id']) && sanitize_output($comment["author_id"]) == $_SESSION['user_id']) {
     ?>
     
     <span>
 
-        <a class="btn btn-danger" href="deletecomment.php?id=<?php echo $comment['id']; ?>"
+        <a class="btn btn-danger" href="deletecomment.php?id=<?php echo sanitize_output($comment['id']); ?>"
             onClick = "javascript: return confirm
             ('Are you sure you want to delete?');"><span class="glyphicon glyphicon-trash" aria-hidden="true"> Delete</a>
 

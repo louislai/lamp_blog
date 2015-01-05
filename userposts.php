@@ -15,7 +15,7 @@ if (isset($_GET['id']) && intval($_GET['id']) > 0) {
 
 	// Fetch user details
 	$user = user_get_by_id($id);
-	echo '<div><h3> Blog Posts by ' . $user['name'] . '</h3></div>';
+	echo '<div><h3> Blog Posts by ' . sanitize_output($user['name']) . '</h3></div>';
 
 	// Display posts
     $posts = post_get_by_author_id($id);
