@@ -3,6 +3,7 @@ require_once('Parsedown.php');
 
 function render_comment($content) {
     $renderer = new Parsedown();
+    $renderer->setMarkupEscaped(true);
     return $renderer->text($content);
 }
 
@@ -68,7 +69,7 @@ function comment_display($comment) {
   <div class="comment-box">
 
     <div>
-        <?php echo render_comment(santize_output($comment['comment'])) ?> 
+        <?php echo render_comment(strip_tags($comment['comment'])) ?> 
     </div>
     <hr>
     <p>

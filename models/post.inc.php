@@ -3,6 +3,7 @@ require_once('Parsedown.php');
 
 function render_content($content) {
     $renderer = new Parsedown();
+    $renderer->setMarkupEscaped(true);
     return $renderer->text($content);
 }
 
@@ -91,7 +92,7 @@ function post_display($post, $isFullPost=false) {
                 </p>
                 <hr>
                 <div <?php if (!$isFullPost) { echo 'class="post_read_more"'; } ?> >
-                    <?php echo render_content(sanitize_output($post['content'])) ?> 
+                    <?php echo render_content(strip_tags($post['content'])); ?> 
                 </div>
 
                 <?php
