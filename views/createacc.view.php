@@ -26,8 +26,9 @@
 				
 			</div>
 			<div class="form-group text-center">
-				<input type="submit" name="btnCancel" class="btn btn-danger btn-cancel-action" value="Cancel" formnovalidate/>
+				
 				<input type="submit" class="btn btn-success btn-login-submit" value="Signup" />
+				<input type="submit" name="btnCancel" class="btn btn-danger btn-cancel-action" value="Cancel" formnovalidate/>
 			</div>
 		</form>
 	</div>

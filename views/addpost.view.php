@@ -14,8 +14,9 @@
                 <textarea id="ap_content" rows="10" name="content" class="form-control" <?php if (!$stashed_content) { echo 'placeholder="Put your post content here"'; } ?> required><?php if ($stashed_content) { echo sanitize_output($stashed_content); }?></textarea>
             </div>
             <div class="form-group text-center">
-                <input type="submit" name="btnCancel" class="btn btn-danger btn-cancel-action" value="Cancel" formnovalidate/>
+                
                 <input id="ap_submit" type="submit" class="btn btn-success btn-login-submit" value="Add post" />
+                <input type="submit" name="btnCancel" class="btn btn-danger btn-cancel-action" value="Cancel" formnovalidate/>
             </div>
         </form>
     </div>
